@@ -23,4 +23,4 @@
 	</tbody>
 </table>
 
-<span><%= link "New Profession", to: Routes.profession_path(@conn, :new) %></span>
+<span><%= link "New Profession", to: Routes.profession_path(@conn, :new), class: 'button button-outline' %></span>

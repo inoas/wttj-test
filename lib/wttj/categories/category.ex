@@ -7,6 +7,8 @@ defmodule Wttj.Categories.Category do
 
   schema "categories" do
     timestamps()
+
+    has_many :professions, Wttj.Professions.Profession, foreign_key: :category_name
   end
 
   @doc false

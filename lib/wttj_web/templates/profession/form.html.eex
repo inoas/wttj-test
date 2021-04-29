@@ -9,6 +9,10 @@
 <%= text_input f, :name %>
 <%= error_tag f, :name %>
 
+<%= label f, :category_name %>
+<%= select f, :category_name, [{"...", ""} | Enum.map(@categories, &{&1.name, &1.name})] %>
+<%= error_tag f, :category_name %>
+
 <div>
 	<%= submit "Save", class: 'button' %>
 </div>

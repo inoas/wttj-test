@@ -4,15 +4,20 @@ defmodule Wttj.Professions.Profession do
 
   schema "professions" do
     field :name, :string
-    field :category_name, :id
 
     timestamps()
+
+    belongs_to :categories, Wttj.Categories.Category,
+      foreign_key: :category_name,
+      references: :name,
+      type: :string
   end
 
   @doc false
   def changeset(profession, attrs) do
     profession
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :category_name])
+    |> validate_required([:name, :category_name])
+    |> unique_constraint(:name)
   end
 end
