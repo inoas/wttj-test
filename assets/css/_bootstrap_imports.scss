@@ -1,0 +1,51 @@
+/*
+ * @author  Jonas Hartmann <mail@inoas.com>
+ * @license For full copyright and license information, please see the LICENSE.txt.
+ * @since   1.0.0
+ */
+
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+@import "../node_modules/bootstrap/scss/mixins/_breakpoints";
+@import "../node_modules/bootstrap/scss/mixins/_gradients";
+@import "../node_modules/bootstrap/scss/mixins/_alert";
+@import "../node_modules/bootstrap/scss/mixins/_border-radius";
+@import "../node_modules/bootstrap/scss/_alert";
+@import "../node_modules/bootstrap/scss/bootstrap-grid";
+
+// Responsive textalignment
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .text#{$infix}-left {
+      text-align: left !important;
+    }
+    .text#{$infix}-right {
+      text-align: right !important;
+    }
+    .text#{$infix}-center {
+      text-align: center !important;
+    }
+  }
+}
+
+.alert,
+.message,
+.error-message {
+  @extend .alert;
+}
+.error-message,
+.message.error {
+  @extend .alert-danger;
+}
+.message.success {
+  @extend .alert-success;
+}
+
+input:focus:invalid,
+select:focus:invalid,
+textarea:focus:invalid {
+  color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0.12);
+}

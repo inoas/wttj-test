@@ -22,8 +22,8 @@ defmodule WttjWeb.Router do
   scope "/app", WttjWeb do
     pipe_through :browser
 
-    resources "/categories", CategoryController, param: "name" do
-    end
+    resources "/categories", CategoryController, param: "name"
+    resources "/professions", ProfessionController
   end
 
   # Other scopes may use custom stacks.

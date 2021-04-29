@@ -2,12 +2,12 @@
 
 <ul>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @category.name %>
-  </li>
+	<li>
+		<strong>Name:</strong>
+		<%= @category.name %>
+	</li>
 
 </ul>
 
-<span><%= link "Edit", to: Routes.category_path(@conn, :edit, @category) %></span>
-<span><%= link "Back", to: Routes.category_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.category_path(@conn, :edit, @category), class: 'button button-outline' %></span>
+<span><%= link "Back", to: Routes.category_path(@conn, :index), class: 'button button-outline' %></span>

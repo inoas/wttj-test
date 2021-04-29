@@ -1,0 +1,334 @@
+@import "_milligram_imports";
+@import "_bootstrap_imports";
+@import "_fonts";
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+th,
+td {
+  vertical-align: top;
+  text-align: left;
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+tbody tr:last-child td,
+tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+table {
+  background: $color-tertiary;
+  padding: 1em;
+}
+
+// Firefox: Remove focus line
+a:focus,
+a:active,
+button:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner,
+button:-moz-focusring,
+input[type="reset"]:-moz-focusring,
+input[type="button"]:-moz-focusring,
+input[type="submit"]:-moz-focusring,
+select:-moz-focusring,
+input[type="file"] > input[type="button"]:-moz-focusring {
+  outline: none !important;
+}
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner,
+button:-moz-focusring,
+input[type="reset"]:-moz-focusring,
+input[type="button"]:-moz-focusring,
+input[type="submit"]:-moz-focusring,
+input[type="file"] > input[type="button"]:-moz-focusring {
+  border: 0 !important;
+}
+
+// IE: Remove highlight from focussed select element
+select:focus::-ms-value {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Firefox: Remove outline on focus
+@-moz-document url-prefix() {
+  select,
+  select:-moz-focusring,
+  select::-moz-focus-inner {
+    color: transparent !important;
+    text-shadow: 0 0 0 #000 !important;
+    background-color: none !important;
+  }
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  -webkit-appearance: none;
+}
+
+/* Firefox, Safari and Chromium: No number widget */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  font-smooth: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+header,
+nav,
+main,
+footer {
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  max-width: none;
+  text-align: left;
+  background: none;
+  font-family: $primary_font_family;
+  font-weight: $primary_font_weight;
+}
+
+* {
+  font-weight: $primary_font_weight;
+}
+
+ul,
+ul li,
+dl,
+dt,
+dd {
+  padding: 0;
+  list-style: none;
+}
+
+ul.bullets li {
+  list-style: circle;
+  margin-left: 1.1em;
+}
+
+html,
+body,
+header,
+main,
+footer {
+  margin: 0;
+}
+
+html,
+body,
+footer {
+  background: $color-dark;
+  color: $color-initial;
+  a,
+  a:hover {
+    color: $color-initial;
+  }
+}
+
+header,
+main {
+  background: $color-initial;
+  color: $color-dark;
+}
+
+main {
+  background: $color-initial;
+  color: $color-dark;
+  a,
+  a:hover {
+    color: $color-primary;
+  }
+}
+
+.menu,
+.header,
+header,
+footer,
+fieldset,
+label,
+button,
+.button,
+.alert {
+  user-select: none;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+input,
+textarea,
+select,
+option {
+  user-select: initial;
+}
+
+.user-selectable {
+  user-select: initial !important;
+}
+
+textarea {
+  min-height: 12em;
+  resize: vertical;
+  line-height: 133%;
+  margin-bottom: 0;
+  hyphens: auto;
+  color: $color-dark;
+  font-weight: normal;
+}
+
+::placeholder {
+  font-family: $primary_font_family;
+  font-size: 100%;
+  color: #000;
+}
+
+textarea,
+textarea:hover {
+  cursor: text;
+}
+.textarea-lookalike {
+  @extend textarea;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  user-select: initial !important;
+}
+textarea[readonly],
+.textarea-readonly {
+  @extend .monospaced;
+  font-size: 1.2rem;
+  color: black;
+  background: $color-bright;
+}
+
+.hidden,
+.alert.hidden,
+.message.hidden {
+  display: none;
+}
+
+.alert:hover,
+.message.hover {
+  cursor: pointer;
+}
+
+.alert,
+.message {
+  padding-right: 2em;
+}
+
+.alert:after,
+.message:after {
+  position: absolute;
+  top: 0.45em;
+  right: 0.67em;
+  content: "✖";
+  font-weight: normal;
+  opacity: 0.5;
+  word-break: break-all;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.error-message ul,
+.error-message li {
+  margin: 0;
+  padding: 0;
+  word-break: break-all;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.alert:hover:after,
+.message:hover:after {
+  opacity: 1;
+}
+
+.monospaced {
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
+    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+    "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
+    monospace;
+}
+
+.lazy-load,
+.lazy-loaded {
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.lazy-loaded {
+  opacity: 1;
+}
+
+/* Alerts and form errors */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert p {
+  margin-bottom: 0;
+}
+.alert:empty {
+  display: none;
+}
+.invalid-feedback {
+  color: #a94442;
+  display: block;
+  margin: -1rem 0 2rem;
+}
