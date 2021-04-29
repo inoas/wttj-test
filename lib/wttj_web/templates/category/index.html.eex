@@ -13,7 +13,7 @@
 		<tr>
 			<td><%= category.name %></td>
 
-			<td>
+			<td class="actions">
 				<span><%= link "Show", to: Routes.category_path(@conn, :show, category), class: 'button button-outline' %></span>
 				<span><%= link "Edit", to: Routes.category_path(@conn, :edit, category), class: 'button button-outline' %></span>
 				<span><%= link "Delete", to: Routes.category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %></span>
@@ -23,4 +23,8 @@
 	</tbody>
 </table>
 
-<span><%= link "New Category", to: Routes.category_path(@conn, :new), class: 'button button-outline' %></span>
+<div class="container">
+	<div class="actions">
+		<%= link "New Category", to: Routes.category_path(@conn, :new), class: 'button button-outline' %>
+	</div>
+</div>

@@ -14,6 +14,10 @@
 <%= error_tag f, :category_name %>
 
 <div>
-	<%= submit "Save", class: 'button' %>
+	<div class="actions">
+		<%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
+		<%= submit "Save" %>
+	</div>
+
 </div>
 <% end %>

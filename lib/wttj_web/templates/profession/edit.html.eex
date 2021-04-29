@@ -1,5 +1,3 @@
 <h1>Edit Profession</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.profession_path(@conn, :update, @profession)) %>
-
-<span><%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %></span>

@@ -9,7 +9,8 @@
 <%= text_input f, :name %>
 <%= error_tag f, :name %>
 
-<div>
-	<%= submit "Save", class: 'button' %>
+<div class="actions">
+	<%= link "Back", to: Routes.category_path(@conn, :index), class: 'button button-outline' %>
+	<%= submit "Save" %>
 </div>
 <% end %>

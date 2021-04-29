@@ -12,8 +12,7 @@
 		<%= for profession <- @professions do %>
 		<tr>
 			<td><%= profession.name %></td>
-
-			<td>
+			<td class="actions">
 				<span><%= link "Show", to: Routes.profession_path(@conn, :show, profession), class: 'button button-outline' %></span>
 				<span><%= link "Edit", to: Routes.profession_path(@conn, :edit, profession), class: 'button button-outline' %></span>
 				<span><%= link "Delete", to: Routes.profession_path(@conn, :delete, profession), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %></span>
@@ -22,5 +21,8 @@
 		<% end %>
 	</tbody>
 </table>
-
-<span><%= link "New Profession", to: Routes.profession_path(@conn, :new), class: 'button button-outline' %></span>
+<div class="container">
+	<div class="actions">
+		<%= link "New Profession", to: Routes.profession_path(@conn, :new), class: 'button button-outline' %>
+	</div>
+</div>
