@@ -4,6 +4,19 @@
 
 	<%= form_for @conn, Routes.country_path(@conn, :save_import), [multipart: true], fn f-> %>
 
+	<i>
+		<h2>A note of warning</h2>
+		<p><b>country-and-continent-codes-list-csv_json.json</b> extracted from
+			<b>country-and-continent-codes-list_zip.zip</b> downloaded via
+			<a
+				href="https://pkgstore.datahub.io/JohnSnowLabs/country-and-continent-codes-list/country-and-continent-codes-list-csv_json/data/c218eebbf2f8545f3db9051ac893d69c/country-and-continent-codes-list-csv_json.json">https://pkgstore.datahub.io/JohnSnowLabs/country-and-continent-codes-list/country-and-continent-codes-list-csv_json/data/c218eebbf2f8545f3db9051ac893d69c/country-and-continent-codes-list-csv_json.json</a>
+			does not treat multi-continental countries correctly.
+			For instance Egypt belongs to Africa and Asia, see:
+			<a
+				href="https://en.wikipedia.org/wiki/List_of_transcontinental_countries#Africa_and_Asia">https://en.wikipedia.org/wiki/List_of_transcontinental_countries#Africa_and_Asia</a>
+		</p>
+	</i>
+
 	<%= label f, :upload, "JSON File (country-and-continent-codes-list-csv_json.json)" %>
 	<%= file_input f, :upload %>
 

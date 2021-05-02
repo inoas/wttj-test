@@ -42,7 +42,11 @@ defmodule Wttj.Jobs do
         limit: ^limit
       )
 
-    IO.inspect({"jobs without geo data", Repo.one(from query, select: fragment("count(*)"))})
+    IO.inspect(
+      {"jobs without open street maps geo data:",
+       Repo.one(from query, select: fragment("count(*)"))}
+    )
+
     query |> Repo.all()
   end
 

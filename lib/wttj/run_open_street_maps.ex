@@ -10,7 +10,7 @@ defmodule Wttj.RunOpenStreetMaps do
   alias Wttj.Jobs
   alias Wttj.Countries
 
-  @job_interval_in_milli_seconds 50
+  @job_interval_in_milli_seconds 25
   @max_concurrent_http_requests 2
 
   def start_link(_opts \\ []) do
@@ -31,8 +31,6 @@ defmodule Wttj.RunOpenStreetMaps do
   end
 
   defp process_jobs_without_geo_data do
-    IO.inspect("Fetching geo data from open street maps API...")
-
     Jobs.list_jobs_with_office_location_and_missing_geo_data(@max_concurrent_http_requests)
     |> Task.async_stream(fn items -> request_open_street_maps_data_and_update_record(items) end,
       max_concurrent_http_requests: @max_concurrent_http_requests
