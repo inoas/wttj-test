@@ -3,9 +3,9 @@
 <table class="records">
 	<thead>
 		<tr>
-			<th>Contract type</th>
 			<th>Name</th>
 			<th>Profession</th>
+			<th>Contract type</th>
 			<th>Office location</th>
 			<th></th>
 		</tr>
@@ -13,9 +13,9 @@
 	<tbody>
 		<%= for job <- @jobs do %>
 		<tr>
-			<td><%= humanize(job.contract_type) %></td>
 			<td><%= job.name %></td>
-			<td><%= job.professions.name %></td>
+			<td><%= job.professions.name %> (<%= job.professions.category_name %>)</td>
+			<td><%= humanize(job.contract_type) %></td>
 			<td><%= job.office_location %></td>
 			<td class="actions">
 				<%= link "Show", to: Routes.job_path(@conn, :show, job), class: 'button button-outline' %>

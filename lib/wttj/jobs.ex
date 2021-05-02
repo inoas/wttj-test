@@ -65,7 +65,13 @@ defmodule Wttj.Jobs do
       ** (Ecto.NoResultsError)
 
   """
-  def get_job_with_profession!(id), do: Repo.get!(Job, id) |> Repo.preload([:professions])
+  def get_job_with_profession!(id) do
+    Repo.get!(Job, id)
+    |> Repo.preload([
+      :professions,
+      professions: :categories
+    ])
+  end
 
   @doc """
   Creates a job.
