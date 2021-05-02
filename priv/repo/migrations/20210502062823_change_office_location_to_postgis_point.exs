@@ -5,7 +5,8 @@ defmodule Wttj.Repo.Migrations.ChangeOfficeLocationToPostgisPoint do
 			alter table(:jobs) do
 				remove :office_location
 			end
-			execute("SELECT AddGeometryColumn ('jobs', 'office_location', 4326, 'POINT', 2);")
+			# execute("SELECT AddGeometryColumn ('jobs', 'office_location', 4326, 'POINT', 2);")
+			execute("ALTER TABLE jobs ADD COLUMN office_location GEOGRAPHY(POINT,4326);")
 			execute("CREATE INDEX office_location_index ON jobs USING GIST (office_location);")
   end
 

@@ -9,7 +9,7 @@
 
 	<div class="actions">
 		<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>
-		<%= submit "Save" %>
+		<%= submit "Import" %>
 	</div>
 	<% end %>
 
