@@ -51,34 +51,6 @@ defmodule Wttj.RunOpenStreetMaps do
         IO.inspect("Could not update record via open street maps API")
         {:error, "nopes"}
     end
-
-    #   with {:ok, open_street_maps_api_responses} <-
-    #          fetch_open_street_maps_api_data_coords(object_photo_binary),
-    #        {:ok, open_street_maps_api_responses} <-
-    #          open_street_maps_api_responses |> Map.fetch("address"),
-    #        {:ok, open_street_maps_api_responses} <-
-    #          open_street_maps_api_responses
-    #          |> List.first()
-    #          |> Map.fetch("localizedObjectAnnotations"),
-    #        {:ok, open_street_maps_api_responses} <-
-    #          open_street_maps_api_responses
-    #          |> Jason.encode() do
-    #     DevicesHistory.atomic_update_open_street_maps_api_result_if_nil(
-    #       device_history_id,
-    #       open_street_maps_api_responses
-    #     )
-    #   else
-    #     _error ->
-    #       {:ok, open_street_maps_api_responses} =
-    #         %{"googleVisionApiReturnedNoLocalizedObjectAnnotations" => true}
-    #         |> Jason.encode()
-
-    #       DevicesHistory.atomic_update_open_street_maps_api_result_if_nil(
-    #         device_history_id,
-    #         open_street_maps_api_responses
-    #       )
-    #   end
-    # end
   end
 
   def fetch_open_street_maps_api_data_coords(job) do
