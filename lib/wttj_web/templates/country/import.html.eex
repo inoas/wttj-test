@@ -4,7 +4,7 @@
 
 	<%= form_for @conn, Routes.country_path(@conn, :save_import), [multipart: true], fn f-> %>
 
-	<%= label f, :upload, "JSON File" %>
+	<%= label f, :upload, "JSON File (country-and-continent-codes-list-csv_json.json)" %>
 	<%= file_input f, :upload %>
 
 	<div class="actions">

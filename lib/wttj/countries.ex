@@ -38,6 +38,37 @@ defmodule Wttj.Countries do
   def get_country!(id), do: Repo.get!(Country, id)
 
   @doc """
+  Gets a single country.
+
+  Raises `Ecto.NoResultsError` if the Country does not exist.
+
+  ## Examples
+
+      iex> get_country!(123)
+      %Country{}
+
+      iex> get_country!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def find_country_id_by_code(two_letter_code) do
+    two_letter_code = two_letter_code |> String.upcase()
+
+    result =
+      from(c in Country,
+        select: c.id,
+        where: c.two_letter_code == ^two_letter_code
+      )
+      |> Repo.one()
+
+    if result == nil do
+      {:error, :not_found}
+    else
+      {:ok, result}
+    end
+  end
+
+  @doc """
   Creates a country.
 
   ## Examples

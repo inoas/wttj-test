@@ -48,7 +48,9 @@ defmodule Wttj.MixProject do
       {:geo_postgis, "~> 3.4"},
       {:geo, "~> 3.4"},
       {:nimble_csv, "~> 1.1.0"},
-      {:scrivener_ecto, "~> 2.0"}
+      {:scrivener_ecto, "~> 2.0"},
+      {:httpoison, "~> 1.7"},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
       # {:csv, "~> 2.4.1", only: :dev},
       # {:poison, "~> 3.1"}
     ]

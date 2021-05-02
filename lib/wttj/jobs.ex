@@ -24,6 +24,29 @@ defmodule Wttj.Jobs do
   end
 
   @doc """
+  Returns the list of jobs.
+
+  ## Examples
+
+      iex> list_jobs()
+      [%Job{}, ...]
+
+  """
+  def list_jobs_with_office_location_and_missing_geo_data(limit) do
+    query =
+      from(j in Job,
+        where:
+          not is_nil(j.office_location) and
+            is_nil(j.fetched_country_data_last_datetime),
+        order_by: fragment("random()"),
+        limit: ^limit
+      )
+
+    IO.inspect({"jobs without geo data", Repo.one(from query, select: fragment("count(*)"))})
+    query |> Repo.all()
+  end
+
+  @doc """
   Returns a pagination of jobs with associated profession (belongs_to).
 
   ## Examples
@@ -35,6 +58,7 @@ defmodule Wttj.Jobs do
   def paginate_jobs_with_profession(params) do
     Job
     |> preload(:professions)
+    |> preload(:countries)
     |> Repo.paginate(params)
   end
 
@@ -145,8 +169,8 @@ defmodule Wttj.Jobs do
     Job.changeset(job, attrs)
   end
 
+  # FIXME: custom Ecto.Type and defimpl Phoenix.HTML.Safe / to_iodata
   defp convert_office_location_attrs(attrs) do
-    # FIXME: custom Ecto.Type and defimpl Phoenix.HTML.Safe / to_iodata
     if Map.has_key?(attrs, "office_latitude") and
          is_numeric(attrs["office_latitude"]) and
          Map.has_key?(attrs, "office_longitude") and
@@ -171,8 +195,8 @@ defmodule Wttj.Jobs do
     end
   end
 
+  # FIXME: This is not transaction save, must remodel to Ecto.multi or transaction to be
   def import(%Plug.Upload{} = upload) do
-    # FIXME: This is not transaction save, must remodel to Ecto.multi or transaction to be
     try do
       {:ok, upload.path |> File.stream!() |> import_jobs_csv_data_to_table_record()}
     rescue
@@ -209,5 +233,16 @@ defmodule Wttj.Jobs do
     %Job{}
     |> Job.changeset(row)
     |> Repo.insert()
+  end
+
+  def update_job_with_geo_data(job, country_id) do
+    changeset =
+      job
+      |> Job.changeset(%{
+        country_id: country_id,
+        fetched_country_data_last_datetime: NaiveDateTime.local_now()
+      })
+
+    changeset |> Repo.update()
   end
 end

@@ -14,9 +14,10 @@ defmodule Wttj.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Wttj.PubSub},
       # Start the Endpoint (http/https)
-      WttjWeb.Endpoint
+      WttjWeb.Endpoint,
       # Start a worker by calling: Wttj.Worker.start_link(arg)
       # {Wttj.Worker, arg}
+      {Wttj.RunOpenStreetMaps, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
