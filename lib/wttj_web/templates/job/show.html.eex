@@ -10,11 +10,11 @@
 		(<%= @job.professions.categories.name %>)
 	</li>
 	<li>
-		<strong>Contract type:</strong>
+		<strong>Contract Type:</strong>
 		<%= humanize(@job.contract_type) %>
 	</li>
 	<li>
-		<strong>Office location:</strong>
+		<strong>Office Location:</strong>
 		<%= @job.office_location %>
 	</li>
 </ul>
