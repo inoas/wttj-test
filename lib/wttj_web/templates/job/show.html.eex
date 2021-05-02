@@ -13,10 +13,13 @@
 		<strong>Contract Type:</strong>
 		<%= humanize(@job.contract_type) %>
 	</li>
+	<%= if @job.office_location != nil do %>
 	<li>
 		<strong>Office Location:</strong>
-		<%= @job.office_location %>
+		Latitude: <%= @job.office_location.coordinates |> elem(0) %> / Longitude:
+		<%= @job.office_location.coordinates |> elem(1) %>
 	</li>
+	<% end %>
 </ul>
 
 <div class="actions">

@@ -86,6 +86,8 @@ defmodule Wttj.Jobs do
 
   """
   def create_job(attrs \\ %{}) do
+    attrs = attrs |> convert_office_location_attrs()
+
     %Job{}
     |> Job.changeset(attrs)
     |> Repo.insert()
@@ -104,6 +106,8 @@ defmodule Wttj.Jobs do
 
   """
   def update_job(%Job{} = job, attrs) do
+    attrs = attrs |> convert_office_location_attrs()
+
     job
     |> Job.changeset(attrs)
     |> Repo.update()
@@ -136,5 +140,30 @@ defmodule Wttj.Jobs do
   """
   def change_job(%Job{} = job, attrs \\ %{}) do
     Job.changeset(job, attrs)
+  end
+
+  defp convert_office_location_attrs(attrs) do
+    if Map.has_key?(attrs, "office_location_latitude") and
+         is_numeric(attrs["office_location_latitude"]) and
+         Map.has_key?(attrs, "office_location_longitude") and
+         is_numeric(attrs["office_location_longitude"]),
+       do:
+         Map.merge(attrs, %{
+           "office_location" =>
+             "{\"type\": \"Point\", \"coordinates\": [" <>
+               attrs["office_location_latitude"] <>
+               ", " <> attrs["office_location_longitude"] <> "]}"
+         }),
+       else:
+         Map.merge(attrs, %{
+           "office_location" => nil
+         })
+  end
+
+  defp is_numeric(str) do
+    case Float.parse(str) do
+      {_num, ""} -> true
+      _ -> false
+    end
   end
 end

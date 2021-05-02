@@ -18,9 +18,20 @@
 <%= select f, :contract_type, [{"...", ""} | Enum.map(@contract_type_enum_values, &{humanize(&1), &1})] %>
 <%= error_tag f, :contract_type %>
 
-<%= label f, :office_location %>
-<%= text_input f, :office_location %>
-<%= error_tag f, :office_location %>
+<fieldset>
+	<legend>Office Location</legend>
+	<div class="row">
+		<div class="col-6">
+			<%= label f, :office_location_latitude, "Latitude" %>
+			<%= number_input f, :office_location_latitude, value: if Phoenix.Controller.action_name(@conn) == :edit and @job.office_location != nil, do: @job.office_location.coordinates |> elem(0), else: "" %>
+		</div>
+		<div class="col-6">
+			<%= label f, :office_location_longitude, "Longitude" %>
+			<%= number_input f, :office_location_longitude, value: if Phoenix.Controller.action_name(@conn) == :edit and @job.office_location != nil, do: @job.office_location.coordinates |> elem(1), else: "" %>
+		</div>
+	</div>
+	<%= error_tag f, :office_location %>
+</fieldset>
 
 <div class="actions">
 	<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>

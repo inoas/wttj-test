@@ -46,7 +46,9 @@ defmodule Wttj.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:csv, "~> 2.4.1", only: :dev},
-      {:geo_postgis, "~> 3.4"}
+      {:geo_postgis, "~> 3.4"},
+      {:geo, "~> 3.4"}
+      # {:poison, "~> 3.1"}
     ]
   end
 
