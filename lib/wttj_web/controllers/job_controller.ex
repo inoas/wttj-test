@@ -91,4 +91,12 @@ defmodule WttjWeb.JobController do
     |> put_flash(:info, "Job deleted successfully.")
     |> redirect(to: Routes.job_path(conn, :index))
   end
+
+  def import(conn, _params) do
+    render(conn, "import.html")
+  end
+
+  def save_import(conn, _params) do
+    render(conn, "import.html")
+  end
 end

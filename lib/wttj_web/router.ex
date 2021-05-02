@@ -24,7 +24,13 @@ defmodule WttjWeb.Router do
     pipe_through :browser
 
     resources "/categories", CategoryController, param: "name"
+
+    get "/professions/import", ProfessionController, :import
+    post "/professions/import", ProfessionController, :save_import
     resources "/professions", ProfessionController
+
+    get "/jobs/import", JobController, :import
+    post "/jobs/import", JobController, :save_import
     resources "/jobs", JobController
   end
 

@@ -71,4 +71,23 @@ defmodule WttjWeb.ProfessionController do
     |> put_flash(:info, "Profession deleted successfully.")
     |> redirect(to: Routes.profession_path(conn, :index))
   end
+
+  def import(conn, _params) do
+    render(conn, "import.html")
+  end
+
+  def save_import(conn, params) do
+    with %Plug.Upload{} = upload <- Map.get(params, "upload"),
+         %{content_type: "text/csv"} <- upload,
+         {:ok, _imports} <- Professions.import(upload) do
+      conn
+      |> put_flash(:info, "Import successful.")
+      |> redirect(to: Routes.profession_path(conn, :index))
+    else
+      _ ->
+        conn
+        |> put_flash(:error, "Import failed: Upload invalid!")
+        |> redirect(to: Routes.profession_path(conn, :import))
+    end
+  end
 end

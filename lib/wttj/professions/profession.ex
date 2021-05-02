@@ -20,6 +20,5 @@ defmodule Wttj.Professions.Profession do
     profession
     |> cast(attrs, [:name, :category_name])
     |> validate_required([:name, :category_name])
-    |> unique_constraint(:name)
   end
 end

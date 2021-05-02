@@ -34,4 +34,5 @@
 
 <div class="actions">
 	<%= link "New Job", to: Routes.job_path(@conn, :new), class: 'button button-outline' %>
+	<%= link "Import Jobs", to: Routes.job_path(@conn, :import), class: 'button button-outline' %>
 </div>

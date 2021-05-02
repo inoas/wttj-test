@@ -8,6 +8,13 @@ defmodule Wttj.Professions do
 
   alias Wttj.Professions.Profession
 
+  alias Wttj.Categories
+  alias Wttj.Categories.Category
+
+  alias NimbleCSV.RFC4180, as: CSV
+
+  require Logger
+
   @doc """
   Returns the list of professions.
 
@@ -100,5 +107,47 @@ defmodule Wttj.Professions do
   """
   def change_profession(%Profession{} = profession, attrs \\ %{}) do
     Profession.changeset(profession, attrs)
+  end
+
+  def import(%Plug.Upload{} = upload) do
+    imports = upload.path |> File.stream!() |> import_professions_csv_data_to_table_record()
+    IO.inspect(imports)
+    {:ok, imports}
+  end
+
+  defp import_professions_get_csv_column_names(csv_data) do
+    csv_data
+    |> CSV.parse_stream(skip_headers: false)
+    |> Enum.fetch!(0)
+    |> Enum.with_index()
+    |> Map.new(fn {val, num} -> {num, val} end)
+  end
+
+  defp import_professions_csv_data_to_table_record(csv_data) do
+    column_names = import_professions_get_csv_column_names(csv_data)
+
+    csv_data
+    |> CSV.parse_stream(skip_headers: true)
+    |> Enum.map(fn row ->
+      row
+      |> Enum.with_index()
+      |> Map.new(fn {val, num} -> {column_names[num], val} end)
+      |> import_professions_create_or_skip()
+    end)
+  end
+
+  defp import_professions_create_or_skip(row) do
+    case Profession |> Repo.get_by(id: row["id"]) do
+      nil ->
+        if Repo.exists?(from c in Category, where: c.name == ^row["category_name"]) == false do
+          Logger.info("Creating missing category with name: " <> row["category_name"])
+          Categories.create_category(%{name: row["category_name"]})
+        end
+
+        create_profession(row)
+
+      profession ->
+        {:ok, profession}
+    end
   end
 end
