@@ -206,11 +206,8 @@ defmodule Wttj.Jobs do
   defp import_jobs_create_or_skip(row) do
     row = row |> convert_office_location_attrs()
 
-    changeset =
-      %Job{}
-      |> Job.changeset(row)
-
-    changeset
+    %Job{}
+    |> Job.changeset(row)
     |> Repo.insert()
   end
 end
