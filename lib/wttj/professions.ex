@@ -111,12 +111,11 @@ defmodule Wttj.Professions do
 
   def import(%Plug.Upload{} = upload) do
     # FIXME: This is not transaction save, must remodel to Ecto.multi or transaction to be
-    # FIXME: No upsert yet
     try do
       {:ok, upload.path |> File.stream!() |> import_professions_csv_data_to_table_record()}
     rescue
       error ->
-        IO.inspect(error)
+        IO.inspect({error, upload})
         {:error, upload}
     end
   end

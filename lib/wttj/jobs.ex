@@ -172,12 +172,11 @@ defmodule Wttj.Jobs do
 
   def import(%Plug.Upload{} = upload) do
     # FIXME: This is not transaction save, must remodel to Ecto.multi or transaction to be
-    # FIXME: No upsert yet
     try do
       {:ok, upload.path |> File.stream!() |> import_jobs_csv_data_to_table_record()}
     rescue
       error ->
-        IO.inspect(error)
+        IO.inspect({error, upload})
         {:error, upload}
     end
   end
@@ -209,8 +208,6 @@ defmodule Wttj.Jobs do
     changeset =
       %Job{}
       |> Job.changeset(row)
-
-    IO.inspect(changeset)
 
     changeset
     |> Repo.insert()
