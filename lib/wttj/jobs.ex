@@ -146,6 +146,7 @@ defmodule Wttj.Jobs do
   end
 
   defp convert_office_location_attrs(attrs) do
+    # FIXME: custom Ecto.Type and defimpl Phoenix.HTML.Safe / to_iodata
     if Map.has_key?(attrs, "office_latitude") and
          is_numeric(attrs["office_latitude"]) and
          Map.has_key?(attrs, "office_longitude") and
