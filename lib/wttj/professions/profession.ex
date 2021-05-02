@@ -21,4 +21,11 @@ defmodule Wttj.Professions.Profession do
     |> cast(attrs, [:name, :category_name])
     |> validate_required([:name, :category_name])
   end
+
+  def changeset_with_primary_key(profession, attrs) do
+    profession
+    |> changeset(attrs)
+    |> cast(attrs, [:id])
+    |> validate_required([:id])
+  end
 end

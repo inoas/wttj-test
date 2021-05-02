@@ -112,17 +112,13 @@ defmodule Wttj.Professions do
   end
 
   def import(%Plug.Upload{} = upload) do
-    imports = upload.path |> File.stream!() |> import_professions_csv_data_to_table_record()
-    IO.inspect(imports)
-    {:ok, imports}
-  end
-
-  defp import_professions_get_csv_column_names(csv_data) do
-    csv_data
-    |> CSV.parse_stream(skip_headers: false)
-    |> Enum.fetch!(0)
-    |> Enum.with_index()
-    |> Map.new(fn {val, num} -> {num, val} end)
+    # FIXME: This is not transaction save, must remodel to Ecto.multi or transaction to be
+    # FIXME: No upsert yet
+    try do
+      {:ok, upload.path |> File.stream!() |> import_professions_csv_data_to_table_record()}
+    rescue
+      _ -> {:error, upload}
+    end
   end
 
   defp import_professions_csv_data_to_table_record(csv_data) do
@@ -138,6 +134,14 @@ defmodule Wttj.Professions do
     end)
   end
 
+  defp import_professions_get_csv_column_names(csv_data) do
+    csv_data
+    |> CSV.parse_stream(skip_headers: false)
+    |> Enum.fetch!(0)
+    |> Enum.with_index()
+    |> Map.new(fn {val, num} -> {num, val} end)
+  end
+
   defp import_professions_create_or_skip(row) do
     case Profession |> Repo.get_by(id: row["id"]) do
       nil ->
@@ -146,7 +150,9 @@ defmodule Wttj.Professions do
           Categories.create_category(%{name: row["category_name"]})
         end
 
-        create_profession(row)
+        %Profession{}
+        |> Profession.changeset_with_primary_key(row)
+        |> Repo.insert()
 
       profession ->
         {:ok, profession}
