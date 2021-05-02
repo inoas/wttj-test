@@ -13,8 +13,6 @@ defmodule Wttj.Professions do
 
   alias NimbleCSV.RFC4180, as: CSV
 
-  require Logger
-
   @doc """
   Returns the list of professions.
 
@@ -117,7 +115,9 @@ defmodule Wttj.Professions do
     try do
       {:ok, upload.path |> File.stream!() |> import_professions_csv_data_to_table_record()}
     rescue
-      _ -> {:error, upload}
+      error ->
+        IO.inspect(error)
+        {:error, upload}
     end
   end
 
@@ -146,7 +146,7 @@ defmodule Wttj.Professions do
     case Profession |> Repo.get_by(id: row["id"]) do
       nil ->
         if Repo.exists?(from c in Category, where: c.name == ^row["category_name"]) == false do
-          Logger.info("Creating missing category with name: " <> row["category_name"])
+          IO.inspect("Creating missing category with name: " <> row["category_name"])
           Categories.create_category(%{name: row["category_name"]})
         end
 

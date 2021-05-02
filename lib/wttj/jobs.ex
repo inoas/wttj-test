@@ -8,6 +8,8 @@ defmodule Wttj.Jobs do
 
   alias Wttj.Jobs.Job
 
+  alias NimbleCSV.RFC4180, as: CSV
+
   @doc """
   Returns the list of jobs.
 
@@ -143,16 +145,16 @@ defmodule Wttj.Jobs do
   end
 
   defp convert_office_location_attrs(attrs) do
-    if Map.has_key?(attrs, "office_location_latitude") and
-         is_numeric(attrs["office_location_latitude"]) and
-         Map.has_key?(attrs, "office_location_longitude") and
-         is_numeric(attrs["office_location_longitude"]),
+    if Map.has_key?(attrs, "office_latitude") and
+         is_numeric(attrs["office_latitude"]) and
+         Map.has_key?(attrs, "office_longitude") and
+         is_numeric(attrs["office_longitude"]),
        do:
          Map.merge(attrs, %{
            "office_location" =>
              "{\"type\": \"Point\", \"coordinates\": [" <>
-               attrs["office_location_latitude"] <>
-               ", " <> attrs["office_location_longitude"] <> "]}"
+               attrs["office_latitude"] <>
+               ", " <> attrs["office_longitude"] <> "]}"
          }),
        else:
          Map.merge(attrs, %{
@@ -165,5 +167,51 @@ defmodule Wttj.Jobs do
       {_num, ""} -> true
       _ -> false
     end
+  end
+
+  def import(%Plug.Upload{} = upload) do
+    # FIXME: This is not transaction save, must remodel to Ecto.multi or transaction to be
+    # FIXME: No upsert yet
+    # try do
+    {:ok, upload.path |> File.stream!() |> import_jobs_csv_data_to_table_record()}
+    # rescue
+    #   error ->
+    #     IO.inspect(error)
+    #     {:error, upload}
+    # end
+  end
+
+  defp import_jobs_csv_data_to_table_record(csv_data) do
+    column_names = import_jobs_get_csv_column_names(csv_data)
+
+    csv_data
+    |> CSV.parse_stream(skip_headers: true)
+    |> Enum.map(fn row ->
+      row
+      |> Enum.with_index()
+      |> Map.new(fn {val, num} -> {column_names[num], val} end)
+      |> import_jobs_create_or_skip()
+    end)
+  end
+
+  defp import_jobs_get_csv_column_names(csv_data) do
+    csv_data
+    |> CSV.parse_stream(skip_headers: false)
+    |> Enum.fetch!(0)
+    |> Enum.with_index()
+    |> Map.new(fn {val, num} -> {num, val} end)
+  end
+
+  defp import_jobs_create_or_skip(row) do
+    row = row |> convert_office_location_attrs()
+
+    changeset =
+      %Job{}
+      |> Job.changeset(row)
+
+    IO.inspect(changeset)
+
+    changeset
+    |> Repo.insert()
   end
 end

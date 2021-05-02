@@ -15,8 +15,8 @@ defmodule Wttj.Jobs.Job do
   schema "jobs" do
     field :name, :string
     field :contract_type, Ecto.Enum, values: @contract_type_enum_values
-    field :office_location_latitude, :float, virtual: true
-    field :office_location_longitude, :float, virtual: true
+    field :office_latitude, :float, virtual: true
+    field :office_longitude, :float, virtual: true
     field :office_location, Geo.PostGIS.Geometry
 
     belongs_to :professions, Wttj.Professions.Profession,
@@ -34,8 +34,8 @@ defmodule Wttj.Jobs.Job do
       :profession_id,
       :contract_type,
       :name,
-      :office_location_latitude,
-      :office_location_longitude,
+      :office_latitude,
+      :office_longitude,
       :office_location
     ])
     |> validate_required([

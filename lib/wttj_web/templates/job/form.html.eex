@@ -22,12 +22,12 @@
 	<legend>Office Location</legend>
 	<div class="row">
 		<div class="col-6">
-			<%= label f, :office_location_latitude, "Latitude" %>
-			<%= number_input f, :office_location_latitude, value: if Phoenix.Controller.action_name(@conn) == :edit and @job.office_location != nil, do: @job.office_location.coordinates |> elem(0), else: "" %>
+			<%= label f, :office_latitude, "Latitude" %>
+			<%= number_input f, :office_latitude, value: if Phoenix.Controller.action_name(@conn) == :edit and @job.office_location != nil, do: @job.office_location.coordinates |> elem(0), else: "" %>
 		</div>
 		<div class="col-6">
-			<%= label f, :office_location_longitude, "Longitude" %>
-			<%= number_input f, :office_location_longitude, value: if Phoenix.Controller.action_name(@conn) == :edit and @job.office_location != nil, do: @job.office_location.coordinates |> elem(1), else: "" %>
+			<%= label f, :office_longitude, "Longitude" %>
+			<%= number_input f, :office_longitude, value: if Phoenix.Controller.action_name(@conn) == :edit and @job.office_location != nil, do: @job.office_location.coordinates |> elem(1), else: "" %>
 		</div>
 	</div>
 	<%= error_tag f, :office_location %>
