@@ -1,17 +1,21 @@
-<h1>Show Profession</h1>
+<div class="container">
 
-<ul>
-	<li>
-		<strong>Name:</strong>
-		<%= @profession.name %>
-	</li>
-	<li>
-		<strong>Category:</strong>
-		<%= @profession.category_name %>
-	</li>
-</ul>
+	<h1>Show Profession</h1>
 
-<div class="actions">
-	<%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
-	<%= link "Edit", to: Routes.profession_path(@conn, :edit, @profession), class: 'button button-outline' %>
+	<ul>
+		<li>
+			<strong>Name:</strong>
+			<%= @profession.name %>
+		</li>
+		<li>
+			<strong>Category:</strong>
+			<%= @profession.category_name %>
+		</li>
+	</ul>
+
+	<div class="actions">
+		<%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
+		<%= link "Edit", to: Routes.profession_path(@conn, :edit, @profession), class: 'button button-outline' %>
+	</div>
+
 </div>

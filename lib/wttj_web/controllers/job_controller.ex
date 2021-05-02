@@ -6,11 +6,16 @@ defmodule WttjWeb.JobController do
 
   alias Wttj.Professions
 
-  def index(conn, _params) do
-    jobs = Jobs.list_jobs_with_profession()
-    render(conn, "index.html", jobs: jobs)
+  def index(conn, params) do
+    pagination = Jobs.paginate_jobs_with_profession(params)
+
+    render(conn, "index.html",
+      jobs: pagination.entries,
+      pagination: pagination
+    )
   end
 
+  @spec new(Plug.Conn.t(), any) :: Plug.Conn.t()
   def new(conn, _params) do
     professions = Professions.list_professions()
     contract_type_enum_values = Ecto.Enum.values(Wttj.Jobs.Job, :contract_type)

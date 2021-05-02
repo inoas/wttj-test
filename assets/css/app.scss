@@ -153,6 +153,15 @@ div.actions > * {
   margin: 0.33em;
 }
 
+.paginator {
+	padding: 0;
+}
+.paginator button,
+.paginator .button {
+	margin: 0;
+	background: rgba(255,255,255,0.5)
+}
+
 .show.item {
   display: block;
 }

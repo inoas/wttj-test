@@ -1,28 +1,32 @@
-<h1>Show Job</h1>
-<ul>
-	<li>
-		<strong>Name:</strong>
-		<%= @job.name %>
-	</li>
-	<li>
-		<strong>Profession:</strong>
-		<%= @job.professions.name %>
-		(<%= @job.professions.categories.name %>)
-	</li>
-	<li>
-		<strong>Contract Type:</strong>
-		<%= humanize(@job.contract_type) %>
-	</li>
-	<%= if @job.office_location != nil do %>
-	<li>
-		<strong>Office Location:</strong>
-		Latitude: <%= @job.office_location.coordinates |> elem(0) %> / Longitude:
-		<%= @job.office_location.coordinates |> elem(1) %>
-	</li>
-	<% end %>
-</ul>
+<div class="container">
 
-<div class="actions">
-	<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>
-	<%= link "Edit", to: Routes.job_path(@conn, :edit, @job), class: 'button button-outline' %>
+	<h1>Show Job</h1>
+	<ul>
+		<li>
+			<strong>Name:</strong>
+			<%= @job.name %>
+		</li>
+		<li>
+			<strong>Profession:</strong>
+			<%= @job.professions.name %>
+			(<%= @job.professions.categories.name %>)
+		</li>
+		<li>
+			<strong>Contract Type:</strong>
+			<%= humanize(@job.contract_type) %>
+		</li>
+		<%= if @job.office_location != nil do %>
+		<li>
+			<strong>Office Location:</strong>
+			Latitude: <%= @job.office_location.coordinates |> elem(0) %> / Longitude:
+			<%= @job.office_location.coordinates |> elem(1) %>
+		</li>
+		<% end %>
+	</ul>
+
+	<div class="actions">
+		<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>
+		<%= link "Edit", to: Routes.job_path(@conn, :edit, @job), class: 'button button-outline' %>
+	</div>
+
 </div>

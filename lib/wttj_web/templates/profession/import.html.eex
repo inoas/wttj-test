@@ -1,12 +1,16 @@
-<h1>Import Professions</h1>
+<div class="container">
 
-<%= form_for @conn, Routes.profession_path(@conn, :save_import), [multipart: true], fn f-> %>
+	<h1>Import Professions</h1>
 
-<%= label f, :upload, "CSV File (RFC4180)" %>
-<%= file_input f, :upload %>
+	<%= form_for @conn, Routes.profession_path(@conn, :save_import), [multipart: true], fn f-> %>
 
-<div class="actions">
-	<%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
-	<%= submit "Save" %>
+	<%= label f, :upload, "CSV File (RFC4180)" %>
+	<%= file_input f, :upload %>
+
+	<div class="actions">
+		<%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
+		<%= submit "Save" %>
+	</div>
+	<% end %>
+
 </div>
-<% end %>

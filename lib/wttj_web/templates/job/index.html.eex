@@ -1,14 +1,31 @@
-<h1>Listing Jobs</h1>
+<div class="container">
+	<h1>Listing Jobs</h1>
+</div>
 
 <table class="records">
 	<thead>
 		<tr>
-			<th>Name</th>
-			<th>Profession</th>
-			<th>Contract Type</th>
-			<th>Office Location</th>
+			<th style="width: 15em">Name</th>
+			<th style="width: 12em">Profession</th>
+			<th style="width: 12em">Contract Type</th>
+			<th style="width: auto">Office Location</th>
 			<th></th>
 		</tr>
+		<tr>
+			<th colspan="5" class="paginator">
+				<div class="d-flex justify-content-between">
+					<%= if @pagination.page_number > 1 do %>
+					<%= link "◁ Prev Page", to: Routes.job_path(@conn, :index, page: @pagination.page_number - 1), class: "button button-outline" %>
+					<% else %>
+					<br />
+					<% end %>
+					<%= if @pagination.page_number < @pagination.total_pages do %>
+					<%= link "Next Page ▷", to: Routes.job_path(@conn, :index, page: @pagination.page_number + 1), class: "button button-outline" %>
+					<% end %>
+				</div>
+			</th>
+		</tr>
+
 	</thead>
 	<tbody>
 		<%= for job <- @jobs do %>
@@ -30,9 +47,27 @@
 		</tr>
 		<% end %>
 	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="5" class="paginator">
+				<div class="d-flex justify-content-between">
+					<%= if @pagination.page_number > 1 do %>
+					<%= link "◁ Prev Page", to: Routes.job_path(@conn, :index, page: @pagination.page_number - 1), class: "button button-outline" %>
+					<% else %>
+					<br />
+					<% end %>
+					<%= if @pagination.page_number < @pagination.total_pages do %>
+					<%= link "Next Page ▷", to: Routes.job_path(@conn, :index, page: @pagination.page_number + 1), class: "button button-outline" %>
+					<% end %>
+				</div>
+			</th>
+		</tr>
+	</tfoot>
 </table>
 
-<div class="actions">
-	<%= link "New Job", to: Routes.job_path(@conn, :new), class: 'button button-outline' %>
-	<%= link "Import Jobs", to: Routes.job_path(@conn, :import), class: 'button button-outline' %>
+<div class="container">
+	<div class="actions">
+		<%= link "New Job", to: Routes.job_path(@conn, :new), class: 'button button-outline' %>
+		<%= link "Import Jobs", to: Routes.job_path(@conn, :import), class: 'button button-outline' %>
+	</div>
 </div>

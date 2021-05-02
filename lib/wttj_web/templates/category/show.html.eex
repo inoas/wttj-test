@@ -1,13 +1,17 @@
-<h1>Show Category</h1>
+<div class="container">
 
-<ul>
-	<li>
-		<strong>Name:</strong>
-		<%= @category.name %>
-	</li>
-</ul>
+	<h1>Show Category</h1>
 
-<div class="actions">
-	<%= link "Back", to: Routes.category_path(@conn, :index), class: 'button button-outline' %>
-	<%= link "Edit", to: Routes.category_path(@conn, :edit, @category), class: 'button button-outline' %>
+	<ul>
+		<li>
+			<strong>Name:</strong>
+			<%= @category.name %>
+		</li>
+	</ul>
+
+	<div class="actions">
+		<%= link "Back", to: Routes.category_path(@conn, :index), class: 'button button-outline' %>
+		<%= link "Edit", to: Routes.category_path(@conn, :edit, @category), class: 'button button-outline' %>
+	</div>
+
 </div>

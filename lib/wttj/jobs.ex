@@ -24,17 +24,18 @@ defmodule Wttj.Jobs do
   end
 
   @doc """
-  Returns the list of jobs with associated profession (belongs_to).
+  Returns a pagination of jobs with associated profession (belongs_to).
 
   ## Examples
 
-      iex> list_jobs()
+      iex> paginate_jobs_with_profession()
       [%Job{}, ...]
 
   """
-  def list_jobs_with_profession do
-    Repo.all(Job)
-    |> Repo.preload([:professions])
+  def paginate_jobs_with_profession(params) do
+    Job
+    |> preload(:professions)
+    |> Repo.paginate(params)
   end
 
   @doc """

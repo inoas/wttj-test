@@ -1,4 +1,6 @@
-<h1>Listing Categories</h1>
+<div class="container">
+	<h1>Listing Categories</h1>
+</div>
 
 <table class="records">
 	<thead>
@@ -21,6 +23,8 @@
 	</tbody>
 </table>
 
-<div class="actions">
-	<%= link "New Category", to: Routes.category_path(@conn, :new), class: 'button button-outline' %>
+<div class="container">
+	<div class="actions">
+		<%= link "New Category", to: Routes.category_path(@conn, :new), class: 'button button-outline' %>
+	</div>
 </div>

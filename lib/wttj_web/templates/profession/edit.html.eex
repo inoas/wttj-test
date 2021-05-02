@@ -1,3 +1,7 @@
-<h1>Edit Profession</h1>
+<div class="container">
 
-<%= render "form.html", Map.put(assigns, :action, Routes.profession_path(@conn, :update, @profession)) %>
+	<h1>Edit Profession</h1>
+
+	<%= render "form.html", Map.put(assigns, :action, Routes.profession_path(@conn, :update, @profession)) %>
+
+</div>
