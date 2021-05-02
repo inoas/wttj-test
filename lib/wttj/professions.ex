@@ -25,7 +25,9 @@ defmodule Wttj.Professions do
 
   """
   def list_professions do
-    Repo.all(Profession)
+    Profession
+    |> order_by(asc: :name)
+    |> Repo.all()
   end
 
   @doc """

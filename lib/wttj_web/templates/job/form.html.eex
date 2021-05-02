@@ -11,7 +11,7 @@
 <%= error_tag f, :name %>
 
 <%= label f, :profession_id %>
-<%= select f, :profession_id, [{"...", ""} | Enum.map(@professions, &{&1.name, &1.id})] %>
+<%= select f, :profession_id, [{"...", ""} | Enum.map(@professions, &{&1.name <> " - " <> &1.category_name, &1.id})] %>
 <%= error_tag f, :profession_id %>
 
 <%= label f, :contract_type %>
