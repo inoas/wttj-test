@@ -4,7 +4,7 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-
+			<th>Category</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -12,17 +12,18 @@
 		<%= for profession <- @professions do %>
 		<tr>
 			<td><%= profession.name %></td>
+			<td><%= profession.category_name %></td>
 			<td class="actions">
-				<span><%= link "Show", to: Routes.profession_path(@conn, :show, profession), class: 'button button-outline' %></span>
-				<span><%= link "Edit", to: Routes.profession_path(@conn, :edit, profession), class: 'button button-outline' %></span>
-				<span><%= link "Delete", to: Routes.profession_path(@conn, :delete, profession), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %></span>
+				<%= link "Show", to: Routes.profession_path(@conn, :show, profession), class: 'button button-outline' %>
+				<%= link "Edit", to: Routes.profession_path(@conn, :edit, profession), class: 'button button-outline' %>
+				<%= link "Delete", to: Routes.profession_path(@conn, :delete, profession), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %>
 			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-<div class="container">
-	<div class="actions">
-		<%= link "New Profession", to: Routes.profession_path(@conn, :new), class: 'button button-outline' %>
-	</div>
+
+
+<div class="actions">
+	<%= link "New Profession", to: Routes.profession_path(@conn, :new), class: 'button button-outline' %>
 </div>

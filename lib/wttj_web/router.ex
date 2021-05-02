@@ -16,7 +16,8 @@ defmodule WttjWeb.Router do
   scope "/", WttjWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
+    get "/", Plugs.Redirector, [location: "/app/jobs"], as: :root
   end
 
   scope "/app", WttjWeb do
@@ -24,6 +25,7 @@ defmodule WttjWeb.Router do
 
     resources "/categories", CategoryController, param: "name"
     resources "/professions", ProfessionController
+    resources "/jobs", JobController
   end
 
   # Other scopes may use custom stacks.

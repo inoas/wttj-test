@@ -4,7 +4,6 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-
 			<th></th>
 		</tr>
 	</thead>
@@ -12,19 +11,16 @@
 		<%= for category <- @categories do %>
 		<tr>
 			<td><%= category.name %></td>
-
 			<td class="actions">
-				<span><%= link "Show", to: Routes.category_path(@conn, :show, category), class: 'button button-outline' %></span>
-				<span><%= link "Edit", to: Routes.category_path(@conn, :edit, category), class: 'button button-outline' %></span>
-				<span><%= link "Delete", to: Routes.category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %></span>
+				<%= link "Show", to: Routes.category_path(@conn, :show, category), class: 'button button-outline' %>
+				<%= link "Edit", to: Routes.category_path(@conn, :edit, category), class: 'button button-outline' %>
+				<%= link "Delete", to: Routes.category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %>
 			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 
-<div class="container">
-	<div class="actions">
-		<%= link "New Category", to: Routes.category_path(@conn, :new), class: 'button button-outline' %>
-	</div>
+<div class="actions">
+	<%= link "New Category", to: Routes.category_path(@conn, :new), class: 'button button-outline' %>
 </div>

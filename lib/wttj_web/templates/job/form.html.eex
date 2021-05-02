@@ -1,0 +1,30 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+<%= if @changeset.action do %>
+<div class="alert alert-danger">
+	<p>Oops, something went wrong! Please check the errors below.</p>
+</div>
+<% end %>
+
+<%= label f, :name %>
+<%= text_input f, :name %>
+<%= error_tag f, :name %>
+
+<%= label f, :profession_id %>
+<%= select f, :profession_id, [{"...", ""} | Enum.map(@professions, &{&1.name, &1.id})] %>
+<%= error_tag f, :profession_id %>
+
+<%= label f, :contract_type %>
+<%= select f, :contract_type, [{"...", ""} | Enum.map(@contract_type_enum_values, &{humanize(&1), &1})] %>
+<%= error_tag f, :contract_type %>
+
+<%= label f, :office_location %>
+<%= text_input f, :office_location %>
+<%= error_tag f, :office_location %>
+
+<div class="actions">
+	<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>
+	<%= submit "Save" %>
+</div>
+
+<% end %>

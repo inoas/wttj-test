@@ -1,0 +1,24 @@
+<h1>Show Job</h1>
+<ul>
+	<li>
+		<strong>Name:</strong>
+		<%= @job.name %>
+	</li>
+	<li>
+		<strong>Profession:</strong>
+		<%= @job.professions.name %>
+	</li>
+	<li>
+		<strong>Contract type:</strong>
+		<%= humanize(@job.contract_type) %>
+	</li>
+	<li>
+		<strong>Office location:</strong>
+		<%= @job.office_location %>
+	</li>
+</ul>
+
+<div class="actions">
+	<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>
+	<%= link "Edit", to: Routes.job_path(@conn, :edit, @job), class: 'button button-outline' %>
+</div>

@@ -11,6 +11,8 @@ defmodule Wttj.Professions.Profession do
       foreign_key: :category_name,
       references: :name,
       type: :string
+
+    has_many :jobs, Wttj.Jobs.Job, foreign_key: :profession_id
   end
 
   @doc false

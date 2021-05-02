@@ -22,10 +22,9 @@
 						text-shadow:
 							0px 0px 2px rgba(0,0,0,.67),
 							0px 1px 0px rgba(0,0,0,1);
-					">Jobs Board</a></h1>
+					">WTTJ Jobs Board</a></h1>
 			</div>
 		</header>
-
 		<main role="main">
 			<div class="container">
 				<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -38,9 +37,9 @@
 			<div class="container d-flex">
 				<div class="flex-fill">
 					<ul>
-						<li><span><%= link "▷ Categories", to: Routes.category_path(@conn, :index) %></span></li>
+						<li><span><%= link "▷ Jobs", to: Routes.job_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Professions", to: Routes.profession_path(@conn, :index) %></span></li>
-
+						<li><span><%= link "▷ Categories", to: Routes.category_path(@conn, :index) %></span></li>
 					</ul>
 				</div>
 				<div class="flex-fill">

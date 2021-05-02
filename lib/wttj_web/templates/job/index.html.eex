@@ -1,0 +1,32 @@
+<h1>Listing Jobs</h1>
+
+<table class="records">
+	<thead>
+		<tr>
+			<th>Contract type</th>
+			<th>Name</th>
+			<th>Profession</th>
+			<th>Office location</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= for job <- @jobs do %>
+		<tr>
+			<td><%= humanize(job.contract_type) %></td>
+			<td><%= job.name %></td>
+			<td><%= job.professions.name %></td>
+			<td><%= job.office_location %></td>
+			<td class="actions">
+				<%= link "Show", to: Routes.job_path(@conn, :show, job), class: 'button button-outline' %>
+				<%= link "Edit", to: Routes.job_path(@conn, :edit, job), class: 'button button-outline' %>
+				<%= link "Delete", to: Routes.job_path(@conn, :delete, job), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="actions">
+	<%= link "New Job", to: Routes.job_path(@conn, :new), class: 'button button-outline' %>
+</div>
