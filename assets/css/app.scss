@@ -155,11 +155,20 @@ div.actions > * {
 
 .paginator {
 	padding: 0;
+	text-transform: initial !important;
 }
+
 .paginator button,
 .paginator .button {
+	background: rgba(255,255,255,0.5);
 	margin: 0;
-	background: rgba(255,255,255,0.5)
+}
+
+.paginator p {
+	background: none;
+	font-size: 80%;
+	padding: 0;
+	margin: 0;
 }
 
 .show.item {

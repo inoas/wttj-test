@@ -11,21 +11,7 @@
 			<th style="width: auto">Office Location</th>
 			<th></th>
 		</tr>
-		<tr>
-			<th colspan="5" class="paginator">
-				<div class="d-flex justify-content-between">
-					<%= if @pagination.page_number > 1 do %>
-					<%= link "◁ Prev Page", to: Routes.job_path(@conn, :index, page: @pagination.page_number - 1), class: "button button-outline" %>
-					<% else %>
-					<br />
-					<% end %>
-					<%= if @pagination.page_number < @pagination.total_pages do %>
-					<%= link "Next Page ▷", to: Routes.job_path(@conn, :index, page: @pagination.page_number + 1), class: "button button-outline" %>
-					<% end %>
-				</div>
-			</th>
-		</tr>
-
+		<%= render WttjWeb.JobView, "_index_paginator.html", assigns %>
 	</thead>
 	<tbody>
 		<%= for job <- @jobs do %>
@@ -48,20 +34,7 @@
 		<% end %>
 	</tbody>
 	<tfoot>
-		<tr>
-			<th colspan="5" class="paginator">
-				<div class="d-flex justify-content-between">
-					<%= if @pagination.page_number > 1 do %>
-					<%= link "◁ Prev Page", to: Routes.job_path(@conn, :index, page: @pagination.page_number - 1), class: "button button-outline" %>
-					<% else %>
-					<br />
-					<% end %>
-					<%= if @pagination.page_number < @pagination.total_pages do %>
-					<%= link "Next Page ▷", to: Routes.job_path(@conn, :index, page: @pagination.page_number + 1), class: "button button-outline" %>
-					<% end %>
-				</div>
-			</th>
-		</tr>
+		<%= render WttjWeb.JobView, "_index_paginator.html", assigns %>
 	</tfoot>
 </table>
 
