@@ -40,6 +40,7 @@
 						<li><span><%= link "▷ Jobs", to: Routes.job_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Professions", to: Routes.profession_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Categories", to: Routes.category_path(@conn, :index) %></span></li>
+						<li><span><%= link "▷ Countries", to: Routes.country_path(@conn, :index) %></span></li>
 					</ul>
 				</div>
 				<div class="flex-fill">

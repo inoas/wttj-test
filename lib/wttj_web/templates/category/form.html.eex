@@ -11,7 +11,7 @@
 <%= error_tag f, :name %>
 
 <div class="actions">
-	<%= link "Back", to: Routes.category_path(@conn, :index), class: 'button button-outline' %>
+	<%= link "Back", to: Routes.category_path(@conn, :index), class: "button button-outline" %>
 	<%= submit "Save" %>
 </div>
 

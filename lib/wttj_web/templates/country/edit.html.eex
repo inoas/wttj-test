@@ -1,0 +1,7 @@
+<div class="container">
+
+	<h1>Edit Country</h1>
+
+	<%= render "form.html", Map.put(assigns, :action, Routes.country_path(@conn, :update, @country)) %>
+
+</div>

@@ -32,6 +32,10 @@ defmodule WttjWeb.Router do
     get "/jobs/import", JobController, :import
     post "/jobs/import", JobController, :save_import
     resources "/jobs", JobController
+
+    get "/countries/import", CountryController, :import
+    post "/countries/import", CountryController, :save_import
+    resources "/countries", CountryController
   end
 
   # Other scopes may use custom stacks.

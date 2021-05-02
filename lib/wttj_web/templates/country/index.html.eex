@@ -1,0 +1,41 @@
+<div class="container">
+	<h1>Listing Countries</h1>
+</div>
+
+<table class="records">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Three Letter Code</th>
+			<th>Two Letter Code</th>
+			<th>Continent Name</th>
+			<th>Continent Code</th>
+			<th>Number</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= for country <- @countries do %>
+		<tr>
+			<td><%= country.name %></td>
+			<td><%= country.three_letter_code %></td>
+			<td><%= country.two_letter_code %></td>
+			<td><%= country.continent_name %></td>
+			<td><%= country.continent_code %></td>
+			<td><%= country.number %></td>
+			<td class="actions">
+				<%= link "Show", to: Routes.country_path(@conn, :show, country), class: "button button-outline" %>
+				<%= link "Edit", to: Routes.country_path(@conn, :edit, country), class: "button button-outline" %>
+				<%= link "Delete", to: Routes.country_path(@conn, :delete, country), method: :delete, data: [confirm: "Are you sure?"], class: "button" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="container">
+	<div class="actions">
+		<%= link "New Country", to: Routes.country_path(@conn, :new), class: "button button-outline" %>
+		<%= link "Import Countries", to: Routes.country_path(@conn, :import), class: "button button-outline" %>
+	</div>
+</div>

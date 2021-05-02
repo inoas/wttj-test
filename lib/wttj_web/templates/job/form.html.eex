@@ -34,7 +34,7 @@
 </fieldset>
 
 <div class="actions">
-	<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>
+	<%= link "Back", to: Routes.job_path(@conn, :index), class: "button button-outline" %>
 	<%= submit "Save" %>
 </div>
 

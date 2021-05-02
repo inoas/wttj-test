@@ -1,0 +1,36 @@
+<div class="container">
+
+	<h1>Show Country</h1>
+	<ul>
+		<li>
+			<strong>Name:</strong>
+			<%= @country.name %>
+		</li>
+		<li>
+			<strong>Three Letter Code:</strong>
+			<%= @country.three_letter_code %>
+		</li>
+		<li>
+			<strong>Two Letter Code:</strong>
+			<%= @country.two_letter_code %>
+		</li>
+		<li>
+			<strong>Continent Name:</strong>
+			<%= @country.continent_name %>
+		</li>
+		<li>
+			<strong>Continent Code:</strong>
+			<%= @country.continent_code %>
+		</li>
+		<li>
+			<strong>Number:</strong>
+			<%= @country.number %>
+		</li>
+	</ul>
+
+	<div class="actions">
+		<%= link "Back", to: Routes.country_path(@conn, :index), class: "button button-outline" %>
+		<%= link "Edit", to: Routes.country_path(@conn, :edit, @country), class: "button button-outline" %>
+	</div>
+
+</div>

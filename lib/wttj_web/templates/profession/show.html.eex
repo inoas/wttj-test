@@ -14,8 +14,8 @@
 	</ul>
 
 	<div class="actions">
-		<%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
-		<%= link "Edit", to: Routes.profession_path(@conn, :edit, @profession), class: 'button button-outline' %>
+		<%= link "Back", to: Routes.profession_path(@conn, :index), class: "button button-outline" %>
+		<%= link "Edit", to: Routes.profession_path(@conn, :edit, @profession), class: "button button-outline" %>
 	</div>
 
 </div>

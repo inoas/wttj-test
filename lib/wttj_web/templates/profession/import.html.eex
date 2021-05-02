@@ -8,8 +8,8 @@
 	<%= file_input f, :upload %>
 
 	<div class="actions">
-		<%= link "Import", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
-		<%= submit "Save" %>
+		<%= link "Back", to: Routes.profession_path(@conn, :index), class: "button button-outline" %>
+		<%= submit "Import" %>
 	</div>
 	<% end %>
 

@@ -15,7 +15,6 @@ defmodule WttjWeb.JobController do
     )
   end
 
-  @spec new(Plug.Conn.t(), any) :: Plug.Conn.t()
   def new(conn, _params) do
     professions = Professions.list_professions()
     contract_type_enum_values = Ecto.Enum.values(Wttj.Jobs.Job, :contract_type)

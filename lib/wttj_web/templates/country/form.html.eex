@@ -1,0 +1,41 @@
+<div class="container">
+	<%= form_for @changeset, @action, fn f -> %>
+
+	<%= if @changeset.action do %>
+	<div class="alert alert-danger">
+		<p>Oops, something went wrong! Please check the errors below.</p>
+	</div>
+	<% end %>
+
+	<%= label f, :continent_code %>
+	<%= text_input f, :continent_code %>
+	<%= error_tag f, :continent_code %>
+
+	<%= label f, :continent_name %>
+	<%= text_input f, :continent_name %>
+	<%= error_tag f, :continent_name %>
+
+	<%= label f, :name %>
+	<%= text_input f, :name %>
+	<%= error_tag f, :name %>
+
+	<%= label f, :number %>
+	<%= number_input f, :number %>
+	<%= error_tag f, :number %>
+
+	<%= label f, :three_letter_code %>
+	<%= text_input f, :three_letter_code %>
+	<%= error_tag f, :three_letter_code %>
+
+	<%= label f, :two_letter_code %>
+	<%= text_input f, :two_letter_code %>
+	<%= error_tag f, :two_letter_code %>
+
+	<div class="actions">
+		<%= link "Back", to: Routes.country_path(@conn, :index), class: "button button-outline" %>
+		<%= submit "Save" %>
+	</div>
+
+	<% end %>
+
+</div>

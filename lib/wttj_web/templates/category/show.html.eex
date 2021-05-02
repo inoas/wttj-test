@@ -10,8 +10,8 @@
 	</ul>
 
 	<div class="actions">
-		<%= link "Back", to: Routes.category_path(@conn, :index), class: 'button button-outline' %>
-		<%= link "Edit", to: Routes.category_path(@conn, :edit, @category), class: 'button button-outline' %>
+		<%= link "Back", to: Routes.category_path(@conn, :index), class: "button button-outline" %>
+		<%= link "Edit", to: Routes.category_path(@conn, :edit, @category), class: "button button-outline" %>
 	</div>
 
 </div>

@@ -25,8 +25,8 @@
 	</ul>
 
 	<div class="actions">
-		<%= link "Back", to: Routes.job_path(@conn, :index), class: 'button button-outline' %>
-		<%= link "Edit", to: Routes.job_path(@conn, :edit, @job), class: 'button button-outline' %>
+		<%= link "Back", to: Routes.job_path(@conn, :index), class: "button button-outline" %>
+		<%= link "Edit", to: Routes.job_path(@conn, :edit, @job), class: "button button-outline" %>
 	</div>
 
 </div>

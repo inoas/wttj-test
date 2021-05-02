@@ -17,9 +17,9 @@
 			<td><%= profession.name %></td>
 			<td><%= profession.category_name %></td>
 			<td class="actions">
-				<%= link "Show", to: Routes.profession_path(@conn, :show, profession), class: 'button button-outline' %>
-				<%= link "Edit", to: Routes.profession_path(@conn, :edit, profession), class: 'button button-outline' %>
-				<%= link "Delete", to: Routes.profession_path(@conn, :delete, profession), method: :delete, data: [confirm: "Are you sure?"], class: 'button' %>
+				<%= link "Show", to: Routes.profession_path(@conn, :show, profession), class: "button button-outline" %>
+				<%= link "Edit", to: Routes.profession_path(@conn, :edit, profession), class: "button button-outline" %>
+				<%= link "Delete", to: Routes.profession_path(@conn, :delete, profession), method: :delete, data: [confirm: "Are you sure?"], class: "button" %>
 			</td>
 		</tr>
 		<% end %>
@@ -29,8 +29,8 @@
 <div class="container">
 
 	<div class="actions">
-		<%= link "New Profession", to: Routes.profession_path(@conn, :new), class: 'button button-outline' %>
-		<%= link "Import Professions", to: Routes.profession_path(@conn, :import), class: 'button button-outline' %>
+		<%= link "New Profession", to: Routes.profession_path(@conn, :new), class: "button button-outline" %>
+		<%= link "Import Professions", to: Routes.profession_path(@conn, :import), class: "button button-outline" %>
 	</div>
 
 </div>

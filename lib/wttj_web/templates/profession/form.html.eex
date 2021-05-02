@@ -14,11 +14,10 @@
 <%= select f, :category_name, [{"...", ""} | Enum.map(@categories, &{&1.name, &1.name})] %>
 <%= error_tag f, :category_name %>
 
-<div>
-	<div class="actions">
-		<%= link "Back", to: Routes.profession_path(@conn, :index), class: 'button button-outline' %>
-		<%= submit "Save" %>
-	</div>
+
+<div class="actions">
+	<%= link "Back", to: Routes.profession_path(@conn, :index), class: "button button-outline" %>
+	<%= submit "Save" %>
 </div>
 
 <% end %>
