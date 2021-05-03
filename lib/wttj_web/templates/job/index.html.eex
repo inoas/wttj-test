@@ -11,7 +11,10 @@
 			<th style="width: 15%">Office Location</th>
 			<th></th>
 		</tr>
-		<%= render WttjWeb.JobView, "_index_paginator.html", assigns %>
+		<%= render WttjWeb.JobView, "_index_paginator.html", conn: @conn, pagination: @pagination,
+			prev_page_route: Routes.job_path(@conn, :index, page: @pagination.page_number - 1),
+			next_page_route: Routes.job_path(@conn, :index, page: @pagination.page_number + 1)
+		%>
 	</thead>
 	<tbody>
 		<%= for job <- @jobs do %>
@@ -40,7 +43,10 @@
 		<% end %>
 	</tbody>
 	<tfoot>
-		<%= render WttjWeb.JobView, "_index_paginator.html", assigns %>
+		<%= render WttjWeb.JobView, "_index_paginator.html", conn: @conn, pagination: @pagination,
+			prev_page_route: Routes.job_path(@conn, :index, page: @pagination.page_number - 1),
+			next_page_route: Routes.job_path(@conn, :index, page: @pagination.page_number + 1)
+		%>
 	</tfoot>
 </table>
 

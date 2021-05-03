@@ -52,6 +52,10 @@
 			<th style="max-width: 20%">Office Location</th>
 			<th>Actions</th>
 		</tr>
+		<%= render WttjWeb.JobView, "_index_paginator.html", conn: @conn, pagination: @pagination,
+			prev_page_route: Routes.job_path(@conn, :finder, page: @pagination.page_number - 1),
+			next_page_route: Routes.job_path(@conn, :finder, page: @pagination.page_number + 1)
+		%>
 	</thead>
 	<tbody>
 		<%= for {job, job_index} <- Enum.with_index(@jobs) do %>
@@ -79,5 +83,11 @@
 		</tr>
 		<% end %>
 	</tbody>
+	<tfoot>
+		<%= render WttjWeb.JobView, "_index_paginator.html", conn: @conn, pagination: @pagination,
+			prev_page_route: Routes.job_path(@conn, :finder, [page: @pagination.page_number - 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"]]),
+			next_page_route: Routes.job_path(@conn, :finder, [page: @pagination.page_number + 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"]])
+		%>
+	</tfoot>
 </table>
 <% end %>

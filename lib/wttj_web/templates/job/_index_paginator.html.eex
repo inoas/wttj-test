@@ -1,15 +1,15 @@
 <tr>
-	<th colspan="5" class="paginator">
+	<th colspan="100%" class="paginator">
 		<div class="d-flex justify-content-between align-items-center">
 			<%= if @pagination.page_number > 1 do %>
-			<%= link "◁ Prev Page", to: Routes.job_path(@conn, :index, page: @pagination.page_number - 1), class: "button button-outline" %>
+			<%= link "◁ Prev Page", to: @prev_page_route, class: "button button-outline" %>
 			<% else %>
 			<a class="button button-outline" style="visibility: hidden">◁ Prev Page</a>
 			<% end %>
 			<p>Page <%= @pagination.page_number %> of <%= @pagination.total_pages %> </p>
 			<%= if @pagination.page_number < @pagination.total_pages do %>
-			<%= link "Next Page ▷", to: Routes.job_path(@conn, :index, page: @pagination.page_number + 1), class: "button button-outline" %>
-			<%= %> else %>
+			<%= link "Next Page ▷", to: @next_page_route, class: "button button-outline" %>
+			<% else %>
 			<a class="button button-outline" style="visibility: hidden">Next Page ▷</a>
 			<% end %>
 		</div>

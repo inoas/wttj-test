@@ -121,22 +121,29 @@ defmodule WttjWeb.JobController do
         do: params,
         else: params |> Map.put("radius_in_km", "50")
 
-    jobs =
+    pagination =
       with false <- params["latitude"] == nil,
            {latitude, _} <- Float.parse(params["latitude"]),
            false <- params["longitude"] == nil,
            {longitude, _} <- Float.parse(params["longitude"]),
            false <- params["radius_in_km"] == nil,
            {radius_in_km, _} <- Float.parse(params["radius_in_km"]) do
-        Jobs.find_by_coords_in_radius_in_km(%{
-          "latitude" => latitude,
-          "longitude" => longitude,
-          "radius_in_km" => radius_in_km
-        })
+        Jobs.find_by_coords_in_radius_in_km_paginated(
+          %{
+            "latitude" => latitude,
+            "longitude" => longitude,
+            "radius_in_km" => radius_in_km
+          },
+          params
+        )
       else
-        _ -> nil
+        _ -> Jobs.paginate_jobs_with_profession(params)
       end
 
-    render(conn, "finder.html", params: params, jobs: jobs)
+    render(conn, "finder.html",
+      params: params,
+      jobs: pagination.entries,
+      pagination: pagination
+    )
   end
 end
