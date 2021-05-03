@@ -19,15 +19,15 @@
 		<%= error_tag f, :origin %>
 	</fieldset>
 
-	<%= label f, :radius, "Radius: " <> @params["radius"] <> "km", id: "radius-control-label" %>
-	<%= range_input f, :radius, [
-		value: @params["radius"],
-		min: 5,
+	<%= label f, :radius_in_km, "Radius: " <> @params["radius_in_km"] <> "km", id: "radius-in-km-control-label" %>
+	<%= range_input f, :radius_in_km, [
+		value: @params["radius_in_km"],
+		min: 1,
 		max: 2500,
 		step: 1,
-		title: "Radius: " <> @params["radius"] <> "km",
-		onchange: "document.getElementById('radius-control-label').innerHTML = 'Radius: ' + this.value + 'km'; this.title = 'Radius: ' + this.value + 'km';"] %>
-	<%= error_tag f, :radius %>
+		title: "Radius: " <> @params["radius_in_km"] <> "km",
+		onchange: "document.getElementById('radius-in-km-control-label').innerHTML = 'Radius: ' + this.value + 'km'; this.title = 'Radius: ' + this.value + 'km';"] %>
+	<%= error_tag f, :radius_in_km %>
 
 	<div class="actions">
 		<%= submit "Find" %>
@@ -36,27 +36,28 @@
 	<% end %>
 </div>
 
-<%= if (@params["latitude"] != nil and @params["longitude"] != nil and @params["radius"] != nil) do %>
+<%= if (@params["latitude"] != nil and @params["longitude"] != nil and @params["radius_in_km"] != nil) do %>
 <div class="container">
-	<h2>Search Results (max 100)</h2>
+	<h2>Search Results (max 250)</h2>
 </div>
 
 <table class="records">
 	<thead>
 		<tr>
 			<th style="width: 3em; text-align: right">#</th>
-			<th style="width: 10em; text-align: right">Distance</th>
-			<th style="max-width: 24%">Name</th>
-			<th style="max-width: 24%">Profession</th>
-			<th style="max-width: 24%">Contract Type</th>
-			<th style="max-width: 24%">Office Location</th>
+			<th style="width: 4em; text-align: right">Distance</th>
+			<th style="max-width: 20%">Name</th>
+			<th style="max-width: 20%">Profession</th>
+			<th style="max-width: 20%">Contract Type</th>
+			<th style="max-width: 20%">Office Location</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		<%= for {job, job_index} <- Enum.with_index(@jobs) do %>
 		<tr>
 			<td style="text-align: right"><%= job_index + 1 %></td>
-			<td style="text-align: right"><%= Float.round(job.distance_to_origin, 2) %> km</td>
+			<td style="text-align: right"><%= Float.round(job.distance_to_origin_in_m / 1000, 2) %> km</td>
 			<td><%= job.name %></td>
 			<td><%= job.professions.name %> (<%= job.professions.category_name %>)</td>
 			<td><%= humanize(job.contract_type) %></td>
@@ -71,6 +72,9 @@
 				Long: <%= job.office_location.coordinates |> elem(1) %>
 				<% end %>
 				<% end %>
+			</td>
+			<td class="actions" style="width: 8em">
+				<%= link "Show", to: Routes.job_path(@conn, :show, job), class: "button button-outline" %>
 			</td>
 		</tr>
 		<% end %>

@@ -31,7 +31,7 @@ defmodule Wttj.Jobs.Job do
       type: :id
 
     # TODO: remove if possible
-    field :distance_to_origin, :float, virtual: true
+    field :distance_to_origin_in_m, :float, virtual: true
 
     timestamps()
   end
