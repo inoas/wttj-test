@@ -17,7 +17,7 @@ defmodule WttjWeb.Router do
     pipe_through :browser
 
     # get "/", PageController, :index
-    get "/", Plugs.Redirector, [location: "/app/jobs"], as: :root
+    get "/", Plugs.Redirector, [location: "/app/job-statistics"], as: :root
   end
 
   scope "/app", WttjWeb do
@@ -36,6 +36,8 @@ defmodule WttjWeb.Router do
     get "/countries/import", CountryController, :import
     post "/countries/import", CountryController, :save_import
     resources "/countries", CountryController
+
+    get "/job-statistics", JobStatisticController, :index
   end
 
   # Other scopes may use custom stacks.

@@ -9,7 +9,7 @@
 			<p>Page <%= @pagination.page_number %> of <%= @pagination.total_pages %> </p>
 			<%= if @pagination.page_number < @pagination.total_pages do %>
 			<%= link "Next Page ▷", to: Routes.job_path(@conn, :index, page: @pagination.page_number + 1), class: "button button-outline" %>
-			<% else %>
+			<%= %> else %>
 			<a class="button button-outline" style="visibility: hidden">Next Page ▷</a>
 			<% end %>
 		</div>

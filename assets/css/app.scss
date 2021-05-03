@@ -298,3 +298,20 @@ table.scaled-down {
   width: auto;
   display: inline-block !important;
 }
+
+.filter-control {
+	padding-bottom: .5em
+}
+.filter-control label {
+	padding: 0;
+	margin: 0;
+	display: block;
+	padding-right: 1em;
+	flex: 1;
+	min-width: 12em;
+}
+.filter-control select {
+	width: auto;
+	margin: 0;
+	flex: 3
+}

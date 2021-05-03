@@ -37,6 +37,7 @@
 			<div class="container d-flex">
 				<div class="flex-fill">
 					<ul>
+						<li><span><%= link "▷ Job Statistics", to: Routes.job_statistic_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Jobs", to: Routes.job_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Professions", to: Routes.profession_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Categories", to: Routes.category_path(@conn, :index) %></span></li>

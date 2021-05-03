@@ -1,0 +1,23 @@
+<div class="container">
+	<h1>Job Statistics</h1>
+
+	<%= form_for @conn, Routes.job_statistic_path(@conn, :index), [method: :get, onchange: "this.submit()"], fn f-> %>
+	<div class="d-flex align-items-center align-content-stretch filter-control">
+		<%= label f, :profession_id, "Filter by Profession" %>
+		<%= select f, :profession_id, options: [{"All Professions", ""} | Enum.map(@professions, &{&1.name <> " - " <> &1.category_name, &1.id})] %>
+	</div>
+	<% end %>
+
+	<table class="records">
+		<tr>
+			<th style="width: 50%">Continent</th>
+			<th style="width: 50%">Jobs</th>
+			<%= for job_statistic <- @job_statistics.data do %>
+		<tr>
+			<td><%= job_statistic.continent_name %></td>
+			<td><%= job_statistic.job_count %></td>
+		</tr>
+		<% end %>
+	</table>
+
+</div>
