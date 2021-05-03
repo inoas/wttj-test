@@ -38,7 +38,7 @@
 
 <%= if (@params["latitude"] != nil and @params["longitude"] != nil and @params["radius_in_km"] != nil) do %>
 <div class="container">
-	<h2>Search Results (max 250)</h2>
+	<h2>Search Results</h2>
 </div>
 
 <table class="records">
@@ -53,8 +53,10 @@
 			<th>Actions</th>
 		</tr>
 		<%= render WttjWeb.JobView, "_index_paginator.html", conn: @conn, pagination: @pagination,
-			prev_page_route: Routes.job_path(@conn, :finder, page: @pagination.page_number - 1),
-			next_page_route: Routes.job_path(@conn, :finder, page: @pagination.page_number + 1)
+			prev_page_route: Routes.job_path(@conn, :finder,
+				page: @pagination.page_number - 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"]),
+			next_page_route: Routes.job_path(@conn, :finder,
+				page: @pagination.page_number + 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"])
 		%>
 	</thead>
 	<tbody>
@@ -85,8 +87,10 @@
 	</tbody>
 	<tfoot>
 		<%= render WttjWeb.JobView, "_index_paginator.html", conn: @conn, pagination: @pagination,
-			prev_page_route: Routes.job_path(@conn, :finder, [page: @pagination.page_number - 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"]]),
-			next_page_route: Routes.job_path(@conn, :finder, [page: @pagination.page_number + 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"]])
+			prev_page_route: Routes.job_path(@conn, :finder,
+				page: @pagination.page_number - 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"]),
+			next_page_route: Routes.job_path(@conn, :finder,
+				page: @pagination.page_number + 1, latitude: @params["latitude"], longitude: @params["longitude"], radius_in_km: @params["radius_in_km"])
 		%>
 	</tfoot>
 </table>

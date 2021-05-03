@@ -252,14 +252,17 @@ defmodule Wttj.Jobs do
     changeset |> Repo.update()
   end
 
-  def find_by_coords_in_radius_in_km_paginated(
-        %{
-          "latitude" => latitude,
-          "longitude" => longitude,
-          "radius_in_km" => radius_in_km
-        },
-        params
-      ) do
+  def find_by_coords_in_radius_in_km_for_api(params),
+    do: find_by_coords_in_radius_in_km_query(params) |> Repo.all()
+
+  def find_by_coords_in_radius_in_km_paginated(params, pagination_params),
+    do: find_by_coords_in_radius_in_km_query(params) |> Repo.paginate(pagination_params)
+
+  defp find_by_coords_in_radius_in_km_query(%{
+         "latitude" => latitude,
+         "longitude" => longitude,
+         "radius_in_km" => radius_in_km
+       }) do
     radius_in_km = if radius_in_km > 2500, do: 2500, else: radius_in_km
     radius_in_m = radius_in_km * 1000
     point_of_origin = %Geo.Point{coordinates: {latitude, longitude}}
@@ -267,14 +270,6 @@ defmodule Wttj.Jobs do
     query =
       from(j in Job,
         where: st_distance_in_meters(j.office_location, ^point_of_origin) < ^radius_in_m,
-        # select:
-        #   map(j, [
-        #     :profession_id,
-        #     :contract_type,
-        #     :name,
-        #     :office_location,
-        #     :country_id
-        #   ]),
         select_merge: %{
           distance_to_origin_in_m: st_distance_in_meters(j.office_location, ^point_of_origin)
         },
@@ -287,6 +282,5 @@ defmodule Wttj.Jobs do
     query
     |> preload(:professions)
     |> preload(:countries)
-    |> Repo.paginate(params)
   end
 end
