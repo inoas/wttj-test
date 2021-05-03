@@ -277,7 +277,7 @@ defmodule Wttj.Jobs do
         },
         order_by: [
           asc_nulls_last: st_distance_in_meters(j.office_location, ^point_of_origin),
-          asc: j.id
+          asc: j.name
         ]
       )
 
