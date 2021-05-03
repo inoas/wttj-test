@@ -26,7 +26,7 @@
 				title="<%= if job.office_location != nil do %>Lat: <%= job.office_location.coordinates |> elem(0) %> / Long: <%= job.office_location.coordinates |> elem(1) %><% end %>">
 				<%= if job.country_id != nil do %>
 				<%= job.countries.name %><br />
-				<%= job.countries.continent_name %>
+				<i><%= job.countries.continent_name %></i>
 				<% else %>
 				<%= if job.office_location != nil do %>
 				Lat: <%= job.office_location.coordinates |> elem(0) %><br />
