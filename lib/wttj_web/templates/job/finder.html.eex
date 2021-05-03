@@ -23,7 +23,7 @@
 	<%= range_input f, :radius, [
 		value: @params["radius"],
 		min: 5,
-		max: 500,
+		max: 2500,
 		step: 1,
 		title: "Radius: " <> @params["radius"] <> "km",
 		onchange: "document.getElementById('radius-control-label').innerHTML = 'Radius: ' + this.value + 'km'; this.title = 'Radius: ' + this.value + 'km';"] %>
@@ -38,21 +38,25 @@
 
 <%= if (@params["latitude"] != nil and @params["longitude"] != nil and @params["radius"] != nil) do %>
 <div class="container">
-	<h2>Search Results (max 25)</h2>
+	<h2>Search Results (max 100)</h2>
 </div>
 
 <table class="records">
 	<thead>
 		<tr>
-			<th style="width: 25%">Name</th>
-			<th style="width: 25%">Profession</th>
-			<th style="width: 25%">Contract Type</th>
-			<th style="width: 25%">Office Location</th>
+			<th style="width: 3em; text-align: right">#</th>
+			<th style="width: 10em; text-align: right">Distance</th>
+			<th style="max-width: 24%">Name</th>
+			<th style="max-width: 24%">Profession</th>
+			<th style="max-width: 24%">Contract Type</th>
+			<th style="max-width: 24%">Office Location</th>
 		</tr>
 	</thead>
 	<tbody>
-		<%= for job <- @jobs do %>
+		<%= for {job, job_index} <- Enum.with_index(@jobs) do %>
 		<tr>
+			<td style="text-align: right"><%= job_index + 1 %></td>
+			<td style="text-align: right"><%= Float.round(job.distance_to_origin, 2) %> km</td>
 			<td><%= job.name %></td>
 			<td><%= job.professions.name %> (<%= job.professions.category_name %>)</td>
 			<td><%= humanize(job.contract_type) %></td>

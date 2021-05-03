@@ -117,10 +117,23 @@ defmodule WttjWeb.JobController do
 
   def finder(conn, params) do
     params =
-      if Map.has_key?(params, "radius"), do: params, else: params |> Map.put("radius", "25")
+      if Map.has_key?(params, "radius"), do: params, else: params |> Map.put("radius", "50")
 
     jobs =
-      Jobs.find_by_coords_in_radius(params["latitude"], params["longitude"], params["radius"])
+      with false <- params["latitude"] == nil,
+           {latitude, _} <- Float.parse(params["latitude"]),
+           false <- params["longitude"] == nil,
+           {longitude, _} <- Float.parse(params["longitude"]),
+           false <- params["radius"] == nil,
+           {radius, _} <- Float.parse(params["radius"]) do
+        Jobs.find_by_coords_in_radius(%{
+          "latitude" => latitude,
+          "longitude" => longitude,
+          "radius" => radius
+        })
+      else
+        _ -> nil
+      end
 
     render(conn, "finder.html", params: params, jobs: jobs)
   end

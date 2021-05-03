@@ -30,6 +30,9 @@ defmodule Wttj.Jobs.Job do
       references: :id,
       type: :id
 
+    # TODO: remove if possible
+    field :distance_to_origin, :float, virtual: true
+
     timestamps()
   end
 

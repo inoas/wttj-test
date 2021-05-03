@@ -4,10 +4,10 @@ defmodule Wttj.Jobs do
   """
 
   import Ecto.Query, warn: false
+  import Geo.PostGIS
+
   alias Wttj.Repo
-
   alias Wttj.Jobs.Job
-
   alias NimbleCSV.RFC4180, as: CSV
 
   @doc """
@@ -179,6 +179,8 @@ defmodule Wttj.Jobs do
          is_numeric(attrs["office_latitude"]) and
          Map.has_key?(attrs, "office_longitude") and
          is_numeric(attrs["office_longitude"]),
+       # TODO: FIXME: Confirm this https://stackoverflow.com/questions/36514093/how-do-i-make-a-st-distance-query-in-meters-with-two-elixir-geo-point-locations#comment60680675_36514093
+       # There ain't no standard :/ https://stackoverflow.com/questions/18636564/lat-long-or-long-lat
        do:
          Map.merge(attrs, %{
            "office_location" =>
@@ -250,11 +252,28 @@ defmodule Wttj.Jobs do
     changeset |> Repo.update()
   end
 
-  def find_by_coords_in_radius(latitude, longitude, radius) do
-    Job
+  def find_by_coords_in_radius(%{
+        "latitude" => latitude,
+        "longitude" => longitude,
+        "radius" => radius
+      }) do
+    point_of_origin = %Geo.Point{coordinates: {latitude, longitude}}
+
+    query =
+      from(j in Job,
+        where: st_distance_in_meters(j.office_location, ^point_of_origin) < ^radius,
+        select_merge: %{
+          distance_to_origin: st_distance_in_meters(j.office_location, ^point_of_origin)
+        },
+        order_by: [
+          asc_nulls_last: st_distance_in_meters(j.office_location, ^point_of_origin) < ^radius
+        ]
+      )
+
+    query
     |> preload(:professions)
     |> preload(:countries)
-    |> limit(25)
+    |> limit(50)
     |> Repo.all()
   end
 end
