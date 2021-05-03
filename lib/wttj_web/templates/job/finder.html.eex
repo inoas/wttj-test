@@ -1,0 +1,39 @@
+<div class="container">
+
+	<h1>Job Finder</h1>
+
+	<%= form_for @conn, Routes.job_path(@conn, :finder), [method: :get], fn f-> %>
+
+	<fieldset>
+		<legend>Origin</legend>
+		<div class="row">
+			<div class="col-6">
+				<%= label f, :latitude, "Latitude" %>
+				<%= number_input f, :latitude, [value: @params["latitude"], step: "any", min: "-90", max: "90"] %>
+			</div>
+			<div class="col-6">
+				<%= label f, :longitude, "Longitude" %>
+				<%= number_input f, :longitude, [value: @params["longitude"], step: "any", min: "-180", max: "180"] %>
+			</div>
+		</div>
+		<%= error_tag f, :origin %>
+	</fieldset>
+
+	<% IO.inspect(@params) %>
+	<%= label f, :radius, "Radius: " <> @params["radius"] <> "km", id: "radius-control-label" %>
+	<%= range_input f, :radius, [
+		value: @params["radius"],
+		min: 5,
+		max: 500,
+		step: 1,
+		title: "Radius: " <> @params["radius"] <> "km",
+		onchange: "document.getElementById('radius-control-label').innerHTML = 'Radius: ' + this.value + 'km'; this.title = 'Radius: ' + this.value + 'km';"] %>
+	<%= error_tag f, :radius %>
+
+	<div class="actions">
+		<%= submit "Find" %>
+	</div>
+
+	<% end %>
+
+</div>

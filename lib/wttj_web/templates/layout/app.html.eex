@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
 
 	<head>
 		<meta charset="utf-8" />
@@ -13,7 +13,7 @@
 			rel="stylesheet">
 	</head>
 
-	<body>
+	<body id="body">
 		<header
 			style="background-color: rgba(67, 107, 189, 1); background-image: linear-gradient(rgba(84, 128, 211, 1), rgba(50, 86, 167, 1)); border-bottom: 1px solid #333">
 			<div class="container">
@@ -25,7 +25,7 @@
 					">WTTJ Jobs Board</a></h1>
 			</div>
 		</header>
-		<main role="main">
+		<main id="main" role="main">
 			<div class="container">
 				<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
 				<p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
@@ -33,10 +33,11 @@
 			<%= @inner_content %>
 		</main>
 
-		<footer role="footer" style="border-top: 1px solid black">
+		<footer id="footer" role="footer" style="border-top: 1px solid black">
 			<div class="container d-flex">
 				<div class="flex-fill">
 					<ul>
+						<li><span><%= link "▷ Job Finder", to: Routes.job_path(@conn, :finder) %></span></li>
 						<li><span><%= link "▷ Job Statistics", to: Routes.job_statistic_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Jobs", to: Routes.job_path(@conn, :index) %></span></li>
 						<li><span><%= link "▷ Professions", to: Routes.profession_path(@conn, :index) %></span></li>
@@ -44,11 +45,9 @@
 						<li><span><%= link "▷ Countries", to: Routes.country_path(@conn, :index) %></span></li>
 					</ul>
 				</div>
-				<div class="flex-fill">
-					<ul>
-						<li><%= link "▷ Phoenix LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-					</ul>
-				</div>
+				<ul>
+					<li><%= link "▷ Phoenix LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+				</ul>
 			</div>
 		</footer>
 

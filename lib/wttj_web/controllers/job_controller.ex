@@ -114,4 +114,11 @@ defmodule WttjWeb.JobController do
         |> redirect(to: Routes.job_path(conn, :import))
     end
   end
+
+  def finder(conn, params) do
+    params =
+      if Map.has_key?(params, "radius"), do: params, else: params |> Map.put("radius", "25")
+
+    render(conn, "finder.html", params: params)
+  end
 end

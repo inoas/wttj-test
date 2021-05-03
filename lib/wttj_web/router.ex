@@ -29,6 +29,7 @@ defmodule WttjWeb.Router do
     post "/professions/import", ProfessionController, :save_import
     resources "/professions", ProfessionController
 
+    get "/jobs/finder", JobController, :finder
     get "/jobs/import", JobController, :import
     post "/jobs/import", JobController, :save_import
     resources "/jobs", JobController
