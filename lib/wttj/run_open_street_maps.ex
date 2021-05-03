@@ -56,7 +56,7 @@ defmodule Wttj.RunOpenStreetMaps do
       "https://nominatim.openstreetmap.org/reverse?format=json&lat={LATITUDE}&lon={LONGITUDE}"
 
     headers = [
-      {"Cache-Control", "private"},
+      {"Cache-Control", "public"},
       {"Content-Type", "application/json; charset=utf-8"},
       {"Accepts", "application/json; charset=utf-8"}
     ]
