@@ -251,6 +251,10 @@ defmodule Wttj.Jobs do
   end
 
   def find_by_coords_in_radius(latitude, longitude, radius) do
-    Job |> Repo.all()
+    Job
+    |> preload(:professions)
+    |> preload(:countries)
+    |> limit(25)
+    |> Repo.all()
   end
 end

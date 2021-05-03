@@ -34,5 +34,42 @@
 	</div>
 
 	<% end %>
-
 </div>
+
+<%= if (@params["latitude"] != nil and @params["longitude"] != nil and @params["radius"] != nil) do %>
+<div class="container">
+	<h2>Search Results (max 25)</h2>
+</div>
+
+<table class="records">
+	<thead>
+		<tr>
+			<th style="width: 25%">Name</th>
+			<th style="width: 25%">Profession</th>
+			<th style="width: 25%">Contract Type</th>
+			<th style="width: 25%">Office Location</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= for job <- @jobs do %>
+		<tr>
+			<td><%= job.name %></td>
+			<td><%= job.professions.name %> (<%= job.professions.category_name %>)</td>
+			<td><%= humanize(job.contract_type) %></td>
+			<td
+				title="<%= if job.office_location != nil do %>Lat: <%= job.office_location.coordinates |> elem(0) %> / Long: <%= job.office_location.coordinates |> elem(1) %><% end %>">
+				<%= if job.country_id != nil do %>
+				<%= job.countries.name %><br />
+				<%= job.countries.continent_name %>
+				<% else %>
+				<%= if job.office_location != nil do %>
+				Lat: <%= job.office_location.coordinates |> elem(0) %><br />
+				Long: <%= job.office_location.coordinates |> elem(1) %>
+				<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<% end %>

@@ -347,35 +347,35 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 10px;
   cursor: pointer;
   // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: $color-primary;
+  background: #345;
   border-radius: 3px;
   // border: 0.2px solid rgba(0,0,0,0.2);
 }
 input[type=range]::-webkit-slider-thumb {
   // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1px solid $color-secondary;
-  height: 36px;
-  width: 16px;
+  height: 30px;
+  width: 20px;
   border-radius: 3px;
   background: #ffffff;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -14px;
+  margin-top: -10px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: $color-primary;
+  background: #345;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
   // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
+  background:  #345;
   border-radius: 3px;
   // border: 0.2px solid rgba(0,0,0,0.2);
 }
 input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1px solid #000000;
   height: 30px;
   width: 20px;
@@ -389,23 +389,23 @@ input[type=range]::-ms-track {
   cursor: pointer;
   background: transparent;
   border-color: transparent;
-  border-width: 16px 0;
+  border-width: 20px 0;
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: $color-primary;
+  background: #345;
   // border: 0.2px solid rgba(0,0,0,0.2);
   border-radius: 3px;
   // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 input[type=range]::-ms-fill-upper {
-  background: $color-primary-alt;
+  background: #345;
   // border: 0.2px solid rgba(0,0,0,0.2);
   border-radius: 3px;
   // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1px solid $color-secondary;
   height: 30px;
   width: 20px;
@@ -414,8 +414,8 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: $color-primary;
+  background: #345;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: $color-primary-alt;
+  background: #345;
 }
