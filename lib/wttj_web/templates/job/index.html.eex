@@ -5,9 +5,9 @@
 <table class="records">
 	<thead>
 		<tr>
-			<th style="width: 33%">Name</th>
+			<th style="width: 30%">Name</th>
 			<th style="width: 25%">Profession</th>
-			<th style="width: 15%">Contract Type</th>
+			<th style="width: 10%">Contract Type</th>
 			<th style="width: 15%">Office Location</th>
 			<th></th>
 		</tr>
