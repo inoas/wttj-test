@@ -10,7 +10,7 @@ defmodule Wttj.RunOpenStreetMaps do
   alias Wttj.Jobs
   alias Wttj.Countries
 
-  @job_interval_in_milli_seconds 25
+  @job_interval_in_milli_seconds 100
   @max_concurrent_http_requests 2
 
   def start_link(_opts \\ []) do
