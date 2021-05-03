@@ -249,4 +249,8 @@ defmodule Wttj.Jobs do
 
     changeset |> Repo.update()
   end
+
+  def find_by_coords_in_radius(latitude, longitude, radius) do
+    Job |> Repo.all()
+  end
 end
