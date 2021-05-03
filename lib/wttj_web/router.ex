@@ -41,10 +41,11 @@ defmodule WttjWeb.Router do
     get "/job-statistics", JobStatisticController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", WttjWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", WttjWeb do
+    pipe_through :api
+
+    resources "/jobs", JobApiController, only: [:index, :show]
+  end
 
   # Enables LiveDashboard only for development
   #

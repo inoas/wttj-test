@@ -99,6 +99,7 @@ defmodule Wttj.Jobs do
   def get_job_with_profession!(id) do
     Repo.get!(Job, id)
     |> Repo.preload([
+      :countries,
       :professions,
       professions: :categories
     ])
@@ -252,17 +253,14 @@ defmodule Wttj.Jobs do
     changeset |> Repo.update()
   end
 
-  def find_by_coords_in_radius_in_km_for_api(params),
-    do: find_by_coords_in_radius_in_km_query(params) |> Repo.all()
-
   def find_by_coords_in_radius_in_km_paginated(params, pagination_params),
     do: find_by_coords_in_radius_in_km_query(params) |> Repo.paginate(pagination_params)
 
-  defp find_by_coords_in_radius_in_km_query(%{
-         "latitude" => latitude,
-         "longitude" => longitude,
-         "radius_in_km" => radius_in_km
-       }) do
+  def find_by_coords_in_radius_in_km_query(%{
+        "latitude" => latitude,
+        "longitude" => longitude,
+        "radius_in_km" => radius_in_km
+      }) do
     radius_in_km = if radius_in_km > 2500, do: 2500, else: radius_in_km
     radius_in_m = radius_in_km * 1000
     point_of_origin = %Geo.Point{coordinates: {latitude, longitude}}
