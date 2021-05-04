@@ -1,4 +1,6 @@
-# WTTJ
+# WTTJ Test
+
+A pure script solution might have been faster to create but I like to confirm that everything works logically and simple UIs help me with that, especially because I haven't worked with postgres-gis before this project.
 
 ## On question 02/03
 
