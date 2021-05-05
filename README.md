@@ -7,7 +7,7 @@ A pure script solution might have been faster to create but I like to confirm th
 * finder API url: [http://localhost:4000/api/jobs?latitude=44&longitude=8&radius_in_km=100](http://localhost:4000/api/jobs?latitude=44&longitude=8&radius_in_km=100)
 * single dataset API url [http://localhost:4000/api/jobs/1](http://localhost:4000/api/jobs/1)
 
-Note: The finder API will only yield reliable information once the genstage process ``{Wttj.RunOpenStreetMaps, []}`` is done running, see `stdlout`
+Note: The finder API will only yield reliable information once the genstage process ``{Wttj.RunOpenStreetMaps, []}`` is done running, see `stdout`.
 
 ## On question 02/03
 
