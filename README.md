@@ -2,6 +2,13 @@
 
 A pure script solution might have been faster to create but I like to confirm that everything works logically and simple UIs help me with that, especially because I haven't worked with postgres-gis before this project.
 
+## On question 03/03
+
+* finder API url: [http://localhost:4000/api/jobs?latitude=44&longitude=8&radius_in_km=100](http://localhost:4000/api/jobs?latitude=44&longitude=8&radius_in_km=100)
+* single dataset API url [http://localhost:4000/api/jobs/1](http://localhost:4000/api/jobs/1)
+
+Note: The finder API will only yield reliable information once the genstage process ``{Wttj.RunOpenStreetMaps, []}`` is done running, see `stdlout`
+
 ## On question 02/03
 
 There are multiple ways to make sure the solution performs under heavy write/read.
