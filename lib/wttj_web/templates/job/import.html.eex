@@ -4,7 +4,7 @@
 
 	<%= form_for @conn, Routes.job_path(@conn, :save_import), [multipart: true], fn f-> %>
 
-	<%= label f, :upload, "CSV File (RFC4180)" %>
+	<%= label f, :upload, "CSV File (RFC4180) - ./docs/technical-test-jobs.csv" %>
 	<%= file_input f, :upload %>
 
 	<div class="actions">

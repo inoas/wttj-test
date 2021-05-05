@@ -17,7 +17,7 @@
 		</p>
 	</i>
 
-	<%= label f, :upload, "JSON File (country-and-continent-codes-list-csv_json.json)" %>
+	<%= label f, :upload, "JSON File - ./docs/country-and-continent-codes-list-csv_json.json" %>
 	<%= file_input f, :upload %>
 
 	<div class="actions">
