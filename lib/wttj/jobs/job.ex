@@ -13,25 +13,27 @@ defmodule Wttj.Jobs.Job do
   ]
 
   schema "jobs" do
-    field :name, :string
-    field :contract_type, Ecto.Enum, values: @contract_type_enum_values
-    field :office_latitude, :float, virtual: true
-    field :office_longitude, :float, virtual: true
-    field :office_location, Geo.PostGIS.Geometry
-    field :fetched_country_data_last_datetime, :naive_datetime
+    field(:name, :string)
+    field(:contract_type, Ecto.Enum, values: @contract_type_enum_values)
+    field(:office_latitude, :float, virtual: true)
+    field(:office_longitude, :float, virtual: true)
+    field(:office_location, Geo.PostGIS.Geometry)
+    field(:fetched_country_data_last_datetime, :naive_datetime)
 
-    belongs_to :professions, Wttj.Professions.Profession,
+    belongs_to(:professions, Wttj.Professions.Profession,
       foreign_key: :profession_id,
       references: :id,
       type: :id
+    )
 
-    belongs_to :countries, Wttj.Countries.Country,
+    belongs_to(:countries, Wttj.Countries.Country,
       foreign_key: :country_id,
       references: :id,
       type: :id
+    )
 
     # TODO: remove if possible
-    field :distance_to_origin_in_m, :float, virtual: true
+    field(:distance_to_origin_in_m, :float, virtual: true)
 
     timestamps()
   end
