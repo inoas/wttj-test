@@ -6,8 +6,16 @@ defmodule Wttj.JobsTest do
   describe "jobs" do
     alias Wttj.Jobs.Job
 
-    @valid_attrs %{contract_type: "some contract_type", name: "some name", office_location: "some office_location"}
-    @update_attrs %{contract_type: "some updated contract_type", name: "some updated name", office_location: "some updated office_location"}
+    @valid_attrs %{
+      contract_type: "some contract_type",
+      name: "some name",
+      office_location: "some office_location"
+    }
+    @update_attrs %{
+      contract_type: "some updated contract_type",
+      name: "some updated name",
+      office_location: "some updated office_location"
+    }
     @invalid_attrs %{contract_type: nil, name: nil, office_location: nil}
 
     def job_fixture(attrs \\ %{}) do

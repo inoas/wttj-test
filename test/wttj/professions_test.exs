@@ -40,13 +40,19 @@ defmodule Wttj.ProfessionsTest do
 
     test "update_profession/2 with valid data updates the profession" do
       profession = profession_fixture()
-      assert {:ok, %Profession{} = profession} = Professions.update_profession(profession, @update_attrs)
+
+      assert {:ok, %Profession{} = profession} =
+               Professions.update_profession(profession, @update_attrs)
+
       assert profession.name == "some updated name"
     end
 
     test "update_profession/2 with invalid data returns error changeset" do
       profession = profession_fixture()
-      assert {:error, %Ecto.Changeset{}} = Professions.update_profession(profession, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Professions.update_profession(profession, @invalid_attrs)
+
       assert profession == Professions.get_profession!(profession.id)
     end
 

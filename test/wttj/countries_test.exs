@@ -6,9 +6,30 @@ defmodule Wttj.CountriesTest do
   describe "countries" do
     alias Wttj.Countries.Country
 
-    @valid_attrs %{continent_code: "some continent_code", continent_name: "some continent_name", name: "some name", number: 42, three_letter_code: "some three_letter_code", two_letter_code: "some two_letter_code"}
-    @update_attrs %{continent_code: "some updated continent_code", continent_name: "some updated continent_name", name: "some updated name", number: 43, three_letter_code: "some updated three_letter_code", two_letter_code: "some updated two_letter_code"}
-    @invalid_attrs %{continent_code: nil, continent_name: nil, name: nil, number: nil, three_letter_code: nil, two_letter_code: nil}
+    @valid_attrs %{
+      continent_code: "some continent_code",
+      continent_name: "some continent_name",
+      name: "some name",
+      number: 42,
+      three_letter_code: "some three_letter_code",
+      two_letter_code: "some two_letter_code"
+    }
+    @update_attrs %{
+      continent_code: "some updated continent_code",
+      continent_name: "some updated continent_name",
+      name: "some updated name",
+      number: 43,
+      three_letter_code: "some updated three_letter_code",
+      two_letter_code: "some updated two_letter_code"
+    }
+    @invalid_attrs %{
+      continent_code: nil,
+      continent_name: nil,
+      name: nil,
+      number: nil,
+      three_letter_code: nil,
+      two_letter_code: nil
+    }
 
     def country_fixture(attrs \\ %{}) do
       {:ok, country} =

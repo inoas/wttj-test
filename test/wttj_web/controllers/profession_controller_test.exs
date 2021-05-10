@@ -56,7 +56,9 @@ defmodule WttjWeb.ProfessionControllerTest do
     setup [:create_profession]
 
     test "redirects when data is valid", %{conn: conn, profession: profession} do
-      conn = put(conn, Routes.profession_path(conn, :update, profession), profession: @update_attrs)
+      conn =
+        put(conn, Routes.profession_path(conn, :update, profession), profession: @update_attrs)
+
       assert redirected_to(conn) == Routes.profession_path(conn, :show, profession)
 
       conn = get(conn, Routes.profession_path(conn, :show, profession))
@@ -64,7 +66,9 @@ defmodule WttjWeb.ProfessionControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, profession: profession} do
-      conn = put(conn, Routes.profession_path(conn, :update, profession), profession: @invalid_attrs)
+      conn =
+        put(conn, Routes.profession_path(conn, :update, profession), profession: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Profession"
     end
   end
@@ -75,6 +79,7 @@ defmodule WttjWeb.ProfessionControllerTest do
     test "deletes chosen profession", %{conn: conn, profession: profession} do
       conn = delete(conn, Routes.profession_path(conn, :delete, profession))
       assert redirected_to(conn) == Routes.profession_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.profession_path(conn, :show, profession))
       end

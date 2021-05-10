@@ -3,9 +3,30 @@ defmodule WttjWeb.CountryControllerTest do
 
   alias Wttj.Countries
 
-  @create_attrs %{continent_code: "some continent_code", continent_name: "some continent_name", name: "some name", number: 42, three_letter_code: "some three_letter_code", two_letter_code: "some two_letter_code"}
-  @update_attrs %{continent_code: "some updated continent_code", continent_name: "some updated continent_name", name: "some updated name", number: 43, three_letter_code: "some updated three_letter_code", two_letter_code: "some updated two_letter_code"}
-  @invalid_attrs %{continent_code: nil, continent_name: nil, name: nil, number: nil, three_letter_code: nil, two_letter_code: nil}
+  @create_attrs %{
+    continent_code: "some continent_code",
+    continent_name: "some continent_name",
+    name: "some name",
+    number: 42,
+    three_letter_code: "some three_letter_code",
+    two_letter_code: "some two_letter_code"
+  }
+  @update_attrs %{
+    continent_code: "some updated continent_code",
+    continent_name: "some updated continent_name",
+    name: "some updated name",
+    number: 43,
+    three_letter_code: "some updated three_letter_code",
+    two_letter_code: "some updated two_letter_code"
+  }
+  @invalid_attrs %{
+    continent_code: nil,
+    continent_name: nil,
+    name: nil,
+    number: nil,
+    three_letter_code: nil,
+    two_letter_code: nil
+  }
 
   def fixture(:country) do
     {:ok, country} = Countries.create_country(@create_attrs)
@@ -75,6 +96,7 @@ defmodule WttjWeb.CountryControllerTest do
     test "deletes chosen country", %{conn: conn, country: country} do
       conn = delete(conn, Routes.country_path(conn, :delete, country))
       assert redirected_to(conn) == Routes.country_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.country_path(conn, :show, country))
       end

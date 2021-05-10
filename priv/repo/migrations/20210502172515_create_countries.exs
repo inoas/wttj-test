@@ -13,9 +13,9 @@ defmodule Wttj.Repo.Migrations.CreateCountries do
       timestamps()
     end
 
-		create unique_index(:countries, [:name])
-		create unique_index(:countries, [:number])
-		create unique_index(:countries, [:three_letter_code])
-		create unique_index(:countries, [:two_letter_code])
+    create unique_index(:countries, [:name])
+    create unique_index(:countries, [:number])
+    create unique_index(:countries, [:three_letter_code])
+    create unique_index(:countries, [:two_letter_code])
   end
 end

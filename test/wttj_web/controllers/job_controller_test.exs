@@ -3,8 +3,16 @@ defmodule WttjWeb.JobControllerTest do
 
   alias Wttj.Jobs
 
-  @create_attrs %{contract_type: "some contract_type", name: "some name", office_location: "some office_location"}
-  @update_attrs %{contract_type: "some updated contract_type", name: "some updated name", office_location: "some updated office_location"}
+  @create_attrs %{
+    contract_type: "some contract_type",
+    name: "some name",
+    office_location: "some office_location"
+  }
+  @update_attrs %{
+    contract_type: "some updated contract_type",
+    name: "some updated name",
+    office_location: "some updated office_location"
+  }
   @invalid_attrs %{contract_type: nil, name: nil, office_location: nil}
 
   def fixture(:job) do
@@ -75,6 +83,7 @@ defmodule WttjWeb.JobControllerTest do
     test "deletes chosen job", %{conn: conn, job: job} do
       conn = delete(conn, Routes.job_path(conn, :delete, job))
       assert redirected_to(conn) == Routes.job_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.job_path(conn, :show, job))
       end
